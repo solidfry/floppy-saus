@@ -7,24 +7,28 @@ public class Timer : MonoBehaviour
 {
 
     public float timeRemaining = 120f;
+    private float originalTime;
     public Color32 startColor;
     public Color32 endColor;
     public float transitionDuration = 5f;
 
     [SerializeField]
-    private bool timerRunning = false;
+    public bool timerRunning = false;
     public TMP_Text timeText;
-
     private void OnEnable()
     {
+        GameEvents.OnPreRoundEvent += ResetTimer;
+        GameEvents.OnPlayingEvent += StartTimer;
     }
 
     private void OnDisable()
     {
+        GameEvents.OnPreRoundEvent -= ResetTimer;
+        GameEvents.OnPlayingEvent -= StartTimer;
     }
-
     private void Awake()
     {
+        originalTime = timeRemaining;
         DisplayTimer(timeRemaining);
     }
 
@@ -41,7 +45,6 @@ public class Timer : MonoBehaviour
 
     void HandleTimer()
     {
-
         if (timerRunning)
         {
             if (timeRemaining > 0)
@@ -54,7 +57,6 @@ public class Timer : MonoBehaviour
                 timeRemaining = 0;
                 SetTimerInactive();
                 Debug.Log("Timer is inactive now");
-                GameEvents.OnGameOverEvent?.Invoke();
             }
         }
 
@@ -73,6 +75,13 @@ public class Timer : MonoBehaviour
 
     public void SetTimerInactive()
     {
+        timerRunning = false;
+        GameEvents.OnTimerZeroEvent?.Invoke();
+    }
+
+    public void ResetTimer()
+    {
+        timeRemaining = originalTime;
         timerRunning = false;
     }
 }

@@ -1,24 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum GameStates
-{
-    PreGame,
-    PreRound,
-    Playing,
-    GameOver,
-}
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public GameStates gameState = GameStates.PreGame;
+    private IGameState currentState;
+    [SerializeField]
+    private string currentStateName;
+    [SerializeField]
+    private int score = 0;
+    [SerializeField]
+    private TMP_Text scoreText;
+
+    public PreGameState preGameState = new PreGameState();
+    public PreRoundState preRoundState = new PreRoundState();
+    public PlayingState playingState = new PlayingState();
+    public PostRoundState postRoundState = new PostRoundState();
+    public GameOverState gameOverState = new GameOverState();
+
     public Vector2 vBounds;
     public Vector2 hBounds;
 
-    private void StateManager()
+
+    private void OnEnable()
     {
-        // TODO: State manager will go here. Need to brush up on that.
+        currentState = preGameState;
+        GameEvents.OnPreRoundEvent += preGameState.RoundStart;
+        GameEvents.OnPlayerScoredEvent += playingState.PreRound;
+        GameEvents.OnPlayingEvent += preRoundState.Playing;
+        GameEvents.OnTimerZeroEvent += playingState.GameOver;
+        GameEvents.OnPlayerScoredEvent += Scored;
+        GameEvents.OnGameOverEvent += ResetScore;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnPreRoundEvent -= preGameState.RoundStart;
+        GameEvents.OnPlayerScoredEvent -= playingState.PreRound;
+        GameEvents.OnPlayingEvent -= preRoundState.Playing;
+        GameEvents.OnTimerZeroEvent -= playingState.GameOver;
+        GameEvents.OnPlayerScoredEvent -= Scored;
+        GameEvents.OnGameOverEvent -= ResetScore;
+    }
+
+    private void Update()
+    {
+        currentState = currentState.DoState(this);
+        currentStateName = currentState.ToString();
+    }
+
+    private void Scored()
+    {
+        score++;
+        UpdateUI(score);
+    }
+
+    void ResetScore()
+    {
+        score = 0;
+        UpdateUI(score);
+    }
+
+    void UpdateUI(int score)
+    {
+        scoreText.text = score.ToString();
     }
 
 }

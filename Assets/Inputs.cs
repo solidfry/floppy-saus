@@ -38,12 +38,12 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""c2b8c408-d8a3-4390-a0d6-cbc737b9f16b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -72,7 +72,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ArrowKeys"",
                     ""id"": ""fc81c0aa-fbd3-4b14-9960-eb6c9bb4dbfb"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -81,7 +81,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""left"",
                     ""id"": ""ce76aa01-2863-452a-b2b3-721f3f2be4db"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
@@ -92,7 +92,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""right"",
                     ""id"": ""8df78b4c-6d7a-449c-9dcc-9b142314b534"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
@@ -103,9 +103,31 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""fae4f4e7-67a6-4076-9352-76757d004fa3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4f393e4a-81fa-4b9b-9e47-3bffaa43fb48"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""WASD"",
                     ""id"": ""85fee79e-f98e-4041-81a5-219946427f74"",
-                    ""path"": ""1DAxis"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -114,7 +136,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
+                    ""name"": ""left"",
                     ""id"": ""81b1e736-84bb-499d-8a41-08dc0ef9b7fa"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
@@ -125,12 +147,34 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
+                    ""name"": ""right"",
                     ""id"": ""e5b1c351-736a-42ec-8a83-1e9b703b829f"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0a600381-3209-4967-968e-444f4249eadb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9754aa4b-218d-4d28-a01b-78e30316d90f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
