@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     public PostRoundState postRoundState = new PostRoundState();
     public GameOverState gameOverState = new GameOverState();
 
-    public Vector2 vBounds;
-    public Vector2 hBounds;
 
 
     private void OnEnable()

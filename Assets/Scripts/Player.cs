@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     public Inputs controls;
+
+    public GameObject dropperPrefab;
     public GameObject dropper;
     [SerializeField]
     private int speed = 20;
@@ -25,17 +27,24 @@ public class Player : MonoBehaviour
         controls = new Inputs();
         controls.PlayerControls.Drop.performed += context => Drop();
         controls.PlayerControls.Movement.performed += context => Aim();
-
-        rb = dropper.GetComponent<Rigidbody2D>();
-
-        if (rb == null)
+        if (dropper != null)
+        {
+            rb = dropper.GetComponent<Rigidbody2D>();
+            tr = dropper.GetComponent<Transform>();
+            dropperStartLocation = tr.gameObject.transform.parent.position;
+            rb.simulated = true;
+            rb.isKinematic = true;
+        }
+        else
         {
             Debug.Log("Player RB is null");
         }
+    }
 
-        rb.simulated = false;
-        tr = dropper.GetComponent<Transform>();
-        dropperStartLocation = tr.position;
+    private void Start()
+    {
+        if (dropper == null)
+            AssignPlayerObjects();
     }
 
     private void FixedUpdate()
@@ -44,7 +53,15 @@ public class Player : MonoBehaviour
         {
             moveInput = controls.PlayerControls.Movement.ReadValue<Vector2>();
             moveInput.y = 0f;
-            rb.velocity = moveInput * speed;
+            if (rb == null)
+            {
+                AssignPlayerObjects();
+                rb.velocity = moveInput * speed;
+            }
+            else
+            {
+                rb.velocity = moveInput * speed;
+            }
         }
     }
 
@@ -56,8 +73,8 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
-        GameEvents.OnPlayerScoredEvent += PlayerScored;
-        GameEvents.OnPreRoundEvent += ResetPosition;
+        GameEvents.OnPlayerScoredEvent += DisableControls;
+        GameEvents.OnPlayerScoredEvent += Respawn;
         GameEvents.OnPreRoundEvent += EnableControls;
         GameEvents.OnPreGameEvent += DisableControls;
         GameEvents.OnPlayingEvent += DisableControls;
@@ -66,8 +83,8 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         controls.Disable();
-        GameEvents.OnPlayerScoredEvent -= PlayerScored;
-        GameEvents.OnPreRoundEvent -= ResetPosition;
+        GameEvents.OnPlayerScoredEvent -= DisableControls;
+        GameEvents.OnPlayerScoredEvent -= Respawn;
         GameEvents.OnPreRoundEvent -= EnableControls;
         GameEvents.OnPreGameEvent -= DisableControls;
         GameEvents.OnPlayingEvent -= DisableControls;
@@ -80,7 +97,6 @@ public class Player : MonoBehaviour
             Debug.Log("Dropped");
             GameEvents.OnPlayingEvent?.Invoke();
             rb.isKinematic = false;
-
         }
     }
 
@@ -90,17 +106,18 @@ public class Player : MonoBehaviour
             Debug.Log("Aimed");
     }
 
-    void PlayerScored()
+    void Respawn()
     {
-        DisableControls();
+        Destroy(dropper.transform.parent.gameObject);
+        GameObject newDropper = Instantiate(dropperPrefab, dropperStartLocation, Quaternion.Euler(0, 0, -90));
+        AssignPlayerObjects();
+        ResetPosition();
     }
 
     void ResetPosition()
     {
         rb.velocity = Vector2.zero;
-        rb.simulated = true;
         rb.isKinematic = true;
-        tr.position = dropperStartLocation;
         Debug.Log("Position should be reset");
     }
 
@@ -113,4 +130,13 @@ public class Player : MonoBehaviour
     {
         controlsActive = true;
     }
+
+    void AssignPlayerObjects()
+    {
+        dropper = GameObject.FindGameObjectWithTag("Player");
+        dropper.GetComponent<Rigidbody2D>().isKinematic = true;
+        rb = dropper.GetComponent<Rigidbody2D>();
+        tr = dropper.GetComponent<Transform>();
+    }
+
 }

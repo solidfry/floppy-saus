@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1374346055791769163}
   - component: {fileID: 1374346055791769160}
   - component: {fileID: 1374346055791769161}
+  - component: {fileID: -1095947018938473872}
   m_Layer: 0
   m_Name: LongRectangle
   m_TagString: Untagged
@@ -111,3 +112,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-1095947018938473872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374346055791769166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01901d8bb18ca94689fe9ea715e0b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 10
+  rotationDirection: 2
