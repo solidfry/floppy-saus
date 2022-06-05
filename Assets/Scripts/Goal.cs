@@ -36,7 +36,7 @@ public class Goal : MonoBehaviour
     void SetPosition()
     {
         float pos = Random.Range(Boundaries.hBounds.x, Boundaries.hBounds.y);
-        Vector3 newPos = new Vector3(pos, -4.7f, 0);
+        Vector3 newPos = new Vector3(pos, goalPosition.position.y, 0);
         goalPosition.position = newPos;
         collidedWithGoal = false;
         Debug.Log("Set position of goal value: " + pos);

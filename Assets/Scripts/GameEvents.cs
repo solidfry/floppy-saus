@@ -10,6 +10,7 @@ public class GameEvents : MonoBehaviour
     public delegate void GameOver();
     public delegate void PostRound();
     public delegate void PlayerScored();
+    public delegate void SplatCollision();
 
     public delegate void TimerZero();
 
@@ -42,4 +43,9 @@ public class GameEvents : MonoBehaviour
     /// Timer hit zero
     /// </summary>
     public static TimerZero OnTimerZeroEvent;
+
+    /// <summary>
+    /// When the sausage hits something that needs to splat.
+    /// </summary>
+    public static SplatCollision OnSplatCollisionEvent;
 }
