@@ -35,7 +35,5 @@ public class FloppyRenderer : MonoBehaviour
     void Configure()
     {
         lineRenderer.positionCount = points.Count;
-        lineRenderer.startWidth = 1f;
-        lineRenderer.endWidth = 1f;
     }
 }

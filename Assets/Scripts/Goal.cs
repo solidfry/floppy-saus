@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
+    bool collidedWithGoal = false;
     Transform goalPosition;
 
     private void Awake()
@@ -24,10 +25,10 @@ public class Goal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Dropper") || other.CompareTag("Player"))
+        if ((other.CompareTag("Dropper") || other.CompareTag("Player")) && collidedWithGoal == false)
         {
             Debug.Log("The Goal was hit");
-            // ! BUG: This is invoked multiple times because there are multiple objects that have the tag dropper that could interact when a goal is scored
+            collidedWithGoal = true;
             GameEvents.OnPlayerScoredEvent?.Invoke();
         }
     }
@@ -37,6 +38,7 @@ public class Goal : MonoBehaviour
         float pos = Random.Range(Boundaries.hBounds.x, Boundaries.hBounds.y);
         Vector3 newPos = new Vector3(pos, -4.7f, 0);
         goalPosition.position = newPos;
+        collidedWithGoal = false;
         Debug.Log("Set position of goal value: " + pos);
     }
 }
