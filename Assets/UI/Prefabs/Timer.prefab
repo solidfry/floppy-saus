@@ -104,9 +104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '00:10
-
-'
+  m_text: 00:10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d11e2ca4fc0d48f488dd51631cd8d784, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 21c5d47461862124d8259fcee30a88e8, type: 2}
@@ -128,7 +126,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 304477799
   m_overrideHtmlColors: 1
   m_faceColor:
     serializedVersion: 2
@@ -143,7 +141,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 12
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
