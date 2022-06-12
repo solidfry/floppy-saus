@@ -23,6 +23,9 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (textRect == null || text == null)
+            return;
+
         textRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, pressedOffset.x, textRect.rect.width);
         textRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, pressedOffset.y, textRect.rect.height);
         text.color = pressedColor;
@@ -30,6 +33,9 @@ public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (textRect == null || text == null)
+            return;
+
         textRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0f, textRect.rect.width);
         textRect.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, pressedOffset.x, textRect.rect.height);
         text.color = originalColor;
