@@ -5,13 +5,28 @@ using UnityEngine;
 // This script rotates stuff
 public class Rotate : MonoBehaviour
 {
-    public float rotateSpeed = 5f;
+    [SerializeField]
+    int rotateSpeed = 5;
+
+    [SerializeField]
+    int maxRotateSpeed = 10;
+
     public enum Direction
     {
         Forward, Backward, Random
     }
+
+    public enum Speed
+    {
+        Static, Random
+    }
+
     [SerializeField]
     Direction rotationDirection = Direction.Random;
+
+    [SerializeField]
+    Speed speedType = Speed.Static;
+
     System.Random rand;
     float randomValue;
 
@@ -19,6 +34,12 @@ public class Rotate : MonoBehaviour
     {
         rand = new System.Random(GetInstanceID());
         randomValue = rand.Next(0, 101);
+
+        if (speedType == Speed.Random)
+        {
+            int randomSpeed = rand.Next(rotateSpeed, maxRotateSpeed);
+            rotateSpeed = randomSpeed;
+        }
     }
     private void FixedUpdate()
     {

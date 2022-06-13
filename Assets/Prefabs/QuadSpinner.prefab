@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 10
+  maxRotateSpeed: 500
   rotationDirection: 2
+  speedType: 1
 --- !u!70 &1682765741204740053
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +113,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1374346055791769166}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 74c7c8bfa603ceb4bb0998ad823e70ce, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -127,7 +129,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1374346055791769166}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 74c7c8bfa603ceb4bb0998ad823e70ce, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
