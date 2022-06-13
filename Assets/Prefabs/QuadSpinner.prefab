@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1374346055791769160}
   - component: {fileID: -1095947018938473872}
   - component: {fileID: 1682765741204740053}
+  - component: {fileID: 8408991438248778155}
   - component: {fileID: 2101183668688429950}
   m_Layer: 0
-  m_Name: LongRectangle
+  m_Name: QuadSpinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ff3c2e33190de6045859d92778809a41, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cfaf1536cb4c00348b9113f4956c462c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,9 +115,25 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.0240002, y: 0.13332072}
+  m_Offset: {x: 0.000002563, y: -3.0553338e-13}
+  m_Size: {x: 1.0240057, y: 0.13332215}
   m_Direction: 1
+--- !u!70 &8408991438248778155
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374346055791769166}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0007536411, y: 0}
+  m_Size: {x: 0.13016534, y: 1.0240002}
+  m_Direction: 0
 --- !u!58 &2101183668688429950
 CircleCollider2D:
   m_ObjectHideFlags: 0

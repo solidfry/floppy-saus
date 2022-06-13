@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202590, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Name
-      value: ButtonNav (2)
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202657, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Pivot.x
@@ -530,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202590, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Name
-      value: ButtonNav (1)
+      value: Settings
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202657, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Pivot.x
@@ -917,7 +917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202590, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Name
-      value: ButtonNav
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202657, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Pivot.x
