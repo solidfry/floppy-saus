@@ -1797,6 +1797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 9030608209700406936, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
     - target: {fileID: 9030608209700406937, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1842,9 +1846,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9030608209700406938, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030608209700406938, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
       propertyPath: dropper
       value: 
       objectReference: {fileID: 708624696}
+    - target: {fileID: 9030608209700406938, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
+      propertyPath: showControlsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9030608209700406939, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
       propertyPath: scoreText
       value: 

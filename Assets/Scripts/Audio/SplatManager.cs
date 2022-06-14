@@ -29,6 +29,6 @@ public class SplatManager : MonoBehaviour
         int clipToPlay = rand.Next(0, clips.Count);
         source.clip = clips[clipToPlay];
         source.Play();
-        Debug.Log("Play audio clips of splat" + clips[clipToPlay]);
+        //Debug.Log("Play audio clips of splat " + clips[clipToPlay]);
     }
 }

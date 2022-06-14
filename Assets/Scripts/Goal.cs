@@ -28,8 +28,8 @@ public class Goal : MonoBehaviour
         if ((other.CompareTag("Dropper") || other.CompareTag("Player")) && collidedWithGoal == false)
         {
             Debug.Log("The Goal was hit");
-            collidedWithGoal = true;
             GameEvents.OnPlayerScoredEvent?.Invoke();
+            collidedWithGoal = true;
         }
     }
 

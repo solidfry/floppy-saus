@@ -7,13 +7,10 @@ public class Splat : MonoBehaviour
     bool soundPlayed = false;
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.parent != this.transform.parent)
+        if (other.transform.parent != this.transform.parent && soundPlayed == false)
         {
-            if (soundPlayed == false)
-            {
-                GameEvents.OnSplatCollisionEvent?.Invoke();
-                soundPlayed = true;
-            }
+            GameEvents.OnSplatCollisionEvent?.Invoke();
+            soundPlayed = true;
         }
     }
 

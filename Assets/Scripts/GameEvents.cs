@@ -11,8 +11,8 @@ public class GameEvents : MonoBehaviour
     public delegate void PostRound();
     public delegate void PlayerScored();
     public delegate void SplatCollision();
-
     public delegate void TimerZero();
+    public delegate void OutOfBounds();
 
     /// <summary>
     /// Called before our game starts might be good for set up stuff
@@ -48,4 +48,10 @@ public class GameEvents : MonoBehaviour
     /// When the sausage hits something that needs to splat.
     /// </summary>
     public static SplatCollision OnSplatCollisionEvent;
+
+    // ! Delete this when we remake the level system maybe?
+    /// <summary>
+    /// When the sausage goes out of bounds.
+    /// </summary>
+    public static OutOfBounds OnOutOfBoundsEvent;
 }

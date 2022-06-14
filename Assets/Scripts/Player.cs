@@ -11,12 +11,16 @@ public class Player : MonoBehaviour
     public GameObject dropperPrefab;
     public GameObject dropper;
     [SerializeField]
+    bool dropperVisible = false;
+    [SerializeField]
+    bool hasSpawned = false;
+    [SerializeField]
     private int speed = 20;
     Vector2 moveInput;
     private static bool controlsActive = false;
 
     [SerializeField]
-    private bool showControlsActive;
+    private bool showControlsActive = false;
 
     Vector2 dropperStartLocation;
     Rigidbody2D rb;
@@ -68,6 +72,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         showControlsActive = controlsActive;
+        IsVisible();
     }
 
     private void OnEnable()
@@ -77,7 +82,10 @@ public class Player : MonoBehaviour
         GameEvents.OnPlayerScoredEvent += Respawn;
         GameEvents.OnPreRoundEvent += EnableControls;
         GameEvents.OnPreGameEvent += DisableControls;
+        GameEvents.OnPreRoundEvent += SetHasSpawned;
         GameEvents.OnPlayingEvent += DisableControls;
+        GameEvents.OnOutOfBoundsEvent += Respawn;
+        GameEvents.OnOutOfBoundsEvent += EnableControls;
     }
 
     private void OnDisable()
@@ -87,7 +95,10 @@ public class Player : MonoBehaviour
         GameEvents.OnPlayerScoredEvent -= Respawn;
         GameEvents.OnPreRoundEvent -= EnableControls;
         GameEvents.OnPreGameEvent -= DisableControls;
+        GameEvents.OnPreRoundEvent -= SetHasSpawned;
         GameEvents.OnPlayingEvent -= DisableControls;
+        GameEvents.OnOutOfBoundsEvent -= Respawn;
+        GameEvents.OnOutOfBoundsEvent -= EnableControls;
     }
 
     void Drop()
@@ -137,6 +148,30 @@ public class Player : MonoBehaviour
         dropper.GetComponent<Rigidbody2D>().isKinematic = true;
         rb = dropper.GetComponent<Rigidbody2D>();
         tr = dropper.GetComponent<Transform>();
+    }
+
+    void SetHasSpawned()
+    {
+        hasSpawned = true;
+    }
+
+    private void IsVisible()
+    {
+        if (dropper != null && dropper.GetComponent<Renderer>().isVisible)
+        {
+            dropperVisible = true;
+            Debug.Log("Dropper is visible");
+        }
+        else
+        {
+            dropperVisible = false;
+            Debug.Log("Dropper is invisible");
+        }
+
+        if (!dropperVisible && hasSpawned)
+        {
+            GameEvents.OnOutOfBoundsEvent?.Invoke();
+        }
     }
 
 }
