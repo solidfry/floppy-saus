@@ -82,10 +82,11 @@ public class Player : MonoBehaviour
         GameEvents.OnPlayerScoredEvent += Respawn;
         GameEvents.OnPreRoundEvent += EnableControls;
         GameEvents.OnPreGameEvent += DisableControls;
-        GameEvents.OnPreRoundEvent += SetHasSpawned;
+        GameEvents.OnPreRoundEvent += EnableHasSpawned;
         GameEvents.OnPlayingEvent += DisableControls;
         GameEvents.OnOutOfBoundsEvent += Respawn;
         GameEvents.OnOutOfBoundsEvent += EnableControls;
+        GameEvents.OnGameOverEvent += DisableHasSpawned;
     }
 
     private void OnDisable()
@@ -95,10 +96,11 @@ public class Player : MonoBehaviour
         GameEvents.OnPlayerScoredEvent -= Respawn;
         GameEvents.OnPreRoundEvent -= EnableControls;
         GameEvents.OnPreGameEvent -= DisableControls;
-        GameEvents.OnPreRoundEvent -= SetHasSpawned;
+        GameEvents.OnPreRoundEvent -= EnableHasSpawned;
         GameEvents.OnPlayingEvent -= DisableControls;
         GameEvents.OnOutOfBoundsEvent -= Respawn;
         GameEvents.OnOutOfBoundsEvent -= EnableControls;
+        GameEvents.OnGameOverEvent -= DisableHasSpawned;
     }
 
     void Drop()
@@ -119,10 +121,13 @@ public class Player : MonoBehaviour
 
     void Respawn()
     {
-        Destroy(dropper.transform.parent.gameObject);
-        GameObject newDropper = Instantiate(dropperPrefab, dropperStartLocation, Quaternion.Euler(0, 0, -90));
-        AssignPlayerObjects();
-        ResetPosition();
+        if (dropper != null)
+        {
+            Destroy(dropper.transform.parent.gameObject);
+            GameObject newDropper = Instantiate(dropperPrefab, dropperStartLocation, Quaternion.Euler(0, 0, -90));
+            AssignPlayerObjects();
+            ResetPosition();
+        }
     }
 
     void ResetPosition()
@@ -144,15 +149,23 @@ public class Player : MonoBehaviour
 
     void AssignPlayerObjects()
     {
-        dropper = GameObject.FindGameObjectWithTag("Player");
-        dropper.GetComponent<Rigidbody2D>().isKinematic = true;
-        rb = dropper.GetComponent<Rigidbody2D>();
-        tr = dropper.GetComponent<Transform>();
+        if (dropper == null)
+        {
+            dropper = GameObject.FindGameObjectWithTag("Player");
+            dropper.GetComponent<Rigidbody2D>().isKinematic = true;
+            rb = dropper.GetComponent<Rigidbody2D>();
+            tr = dropper.GetComponent<Transform>();
+        }
     }
 
-    void SetHasSpawned()
+    void EnableHasSpawned()
     {
         hasSpawned = true;
+    }
+
+    void DisableHasSpawned()
+    {
+        hasSpawned = false;
     }
 
     private void IsVisible()

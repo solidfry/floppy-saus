@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1682765741204740053}
   - component: {fileID: 2101183668688429950}
   m_Layer: 0
-  m_Name: LongRectangle
+  m_Name: Spinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,8 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01901d8bb18ca94689fe9ea715e0b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 10
+  rotateSpeed: 100
+  maxRotateSpeed: 300
   rotationDirection: 2
+  speedType: 1
 --- !u!70 &1682765741204740053
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
