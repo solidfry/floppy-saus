@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameOverState : IGameState
@@ -14,7 +15,7 @@ public class GameOverState : IGameState
     public IEnumerator DelayGameOver()
     {
         yield return new WaitForSeconds(3);
-        SceneLoader.LoadScene(1);
+        SceneManager.LoadScene("GameOver");
     }
 
 }
