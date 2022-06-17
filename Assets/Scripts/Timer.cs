@@ -11,10 +11,10 @@ public class Timer : MonoBehaviour
     public Color32 startColor;
     public Color32 endColor;
     public float transitionDuration = 5f;
-
     [SerializeField]
     public bool timerRunning = false;
-    public TMP_Text timeText;
+    [SerializeField]
+    private TMP_Text timerText;
     private void OnEnable()
     {
         GameEvents.OnPreRoundEvent += ResetTimer;
@@ -34,13 +34,21 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        HandleTimer();
+        if (timerText != null)
+        {
+            HandleTimer();
+        }
+        else
+        {
+            timerText = GameObject.Find("TimerText").GetComponent<TMP_Text>();
+            HandleTimer();
+        }
     }
 
     public void StartTimer()
     {
         timerRunning = true;
-        timeText.color = startColor;
+        timerText.color = startColor;
     }
 
     void HandleTimer()
@@ -67,9 +75,9 @@ public class Timer : MonoBehaviour
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        timeText.color = Color32.Lerp(startColor, endColor, Mathf.PingPong(Time.time, transitionDuration) / transitionDuration);
+        timerText.color = Color32.Lerp(startColor, endColor, Mathf.PingPong(Time.time, transitionDuration) / transitionDuration);
 
     }
 

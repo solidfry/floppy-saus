@@ -6,6 +6,8 @@ public class GameEvents : MonoBehaviour
 {
     public delegate void PreGame();
     public delegate void PreRound();
+    public delegate void SpawnObstacles();
+    public delegate void DestroyObstacles();
     public delegate void Playing();
     public delegate void GameOver();
     public delegate void PostRound();
@@ -23,6 +25,16 @@ public class GameEvents : MonoBehaviour
     /// Preround state where the score is incremented if needed
     /// </summary>
     public static PreRound OnPreRoundEvent;
+
+    /// <summary>
+    /// Tell the game to spawn obstacles
+    /// </summary>
+    public static SpawnObstacles OnSpawnObstaclesEvent;
+
+    /// <summary>
+    /// Destroy obstacles
+    /// </summary>
+    public static SpawnObstacles OnDestroyObstaclesEvent;
 
     /// <summary>
     /// When the round starts we might reset a timer

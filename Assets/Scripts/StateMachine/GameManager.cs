@@ -5,13 +5,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;
     private IGameState currentState;
     [SerializeField]
     private string currentStateName;
     [SerializeField]
     private int score = 0;
     [SerializeField]
-    private TMP_Text scoreText;
+    public TMP_Text scoreText;
+    [SerializeField]
+    private float gameOverDelayTime;
 
     public PreGameState preGameState = new PreGameState();
     public PreRoundState preRoundState = new PreRoundState();
@@ -19,13 +22,24 @@ public class GameManager : MonoBehaviour
     public PostRoundState postRoundState = new PostRoundState();
     public GameOverState gameOverState = new GameOverState();
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+
     private void OnEnable()
     {
         currentState = preGameState;
-        GameEvents.OnPreRoundEvent += preGameState.RoundStart;
-        GameEvents.OnPlayerScoredEvent += playingState.PreRound;
-        GameEvents.OnPlayingEvent += preRoundState.Playing;
-        GameEvents.OnTimerZeroEvent += playingState.GameOver;
+        GameEvents.OnPreGameEvent += gameOverState.NewGame;
+        GameEvents.OnPreRoundEvent += preGameState.SetStartRound;
+        GameEvents.OnPlayerScoredEvent += preRoundState.SetNewRound;
+        GameEvents.OnPlayerScoredEvent += playingState.SetPlayerScored;
+        GameEvents.OnPlayingEvent += preRoundState.SetPlaying;
+        GameEvents.OnTimerZeroEvent += playingState.SetTimerIsZero;
         GameEvents.OnPlayerScoredEvent += Scored;
         GameEvents.OnPreGameEvent += ResetScore;
         GameEvents.OnGameOverEvent += GameOver;
@@ -33,10 +47,12 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GameEvents.OnPreRoundEvent -= preGameState.RoundStart;
-        GameEvents.OnPlayerScoredEvent -= playingState.PreRound;
-        GameEvents.OnPlayingEvent -= preRoundState.Playing;
-        GameEvents.OnTimerZeroEvent -= playingState.GameOver;
+        GameEvents.OnPreGameEvent -= gameOverState.NewGame;
+        GameEvents.OnPreRoundEvent -= preGameState.SetStartRound;
+        GameEvents.OnPlayerScoredEvent -= preRoundState.SetNewRound;
+        GameEvents.OnPlayerScoredEvent -= playingState.SetPlayerScored;
+        GameEvents.OnPlayingEvent -= preRoundState.SetPlaying;
+        GameEvents.OnTimerZeroEvent -= playingState.SetTimerIsZero;
         GameEvents.OnPlayerScoredEvent -= Scored;
         GameEvents.OnPreGameEvent -= ResetScore;
         GameEvents.OnGameOverEvent -= GameOver;
@@ -67,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        StartCoroutine(gameOverState.DelayGameOver());
+        StartCoroutine(gameOverState.DelayGameOver(gameOverDelayTime));
     }
 
 }

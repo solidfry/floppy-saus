@@ -78,38 +78,61 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
+
         GameEvents.OnPlayerScoredEvent += DisableControls;
+
         GameEvents.OnPlayerScoredEvent += Respawn;
-        GameEvents.OnPreRoundEvent += EnableControls;
+
         GameEvents.OnPreGameEvent += DisableControls;
+
+        GameEvents.OnPreRoundEvent += EnableControls;
+
         GameEvents.OnPreRoundEvent += EnableHasSpawned;
+
         GameEvents.OnPlayingEvent += DisableControls;
+
         GameEvents.OnOutOfBoundsEvent += Respawn;
+
         GameEvents.OnOutOfBoundsEvent += EnableControls;
+
+        GameEvents.OnGameOverEvent += DisableControls;
+
         GameEvents.OnGameOverEvent += DisableHasSpawned;
     }
 
     private void OnDisable()
     {
         controls.Disable();
+
         GameEvents.OnPlayerScoredEvent -= DisableControls;
+
         GameEvents.OnPlayerScoredEvent -= Respawn;
-        GameEvents.OnPreRoundEvent -= EnableControls;
+
         GameEvents.OnPreGameEvent -= DisableControls;
+
+        GameEvents.OnPreRoundEvent -= EnableControls;
+
         GameEvents.OnPreRoundEvent -= EnableHasSpawned;
+
         GameEvents.OnPlayingEvent -= DisableControls;
+
         GameEvents.OnOutOfBoundsEvent -= Respawn;
+
         GameEvents.OnOutOfBoundsEvent -= EnableControls;
+
+        GameEvents.OnGameOverEvent -= DisableControls;
+
         GameEvents.OnGameOverEvent -= DisableHasSpawned;
     }
 
     void Drop()
     {
-        if (dropper != null && controlsActive)
+        if (controlsActive)
         {
             Debug.Log("Dropped");
             GameEvents.OnPlayingEvent?.Invoke();
             rb.isKinematic = false;
+            DisableControls();
         }
     }
 
@@ -139,12 +162,14 @@ public class Player : MonoBehaviour
 
     void DisableControls()
     {
-        controlsActive = false;
+        if (controlsActive)
+            controlsActive = false;
     }
 
     void EnableControls()
     {
-        controlsActive = true;
+        if (!controlsActive)
+            controlsActive = true;
     }
 
     void AssignPlayerObjects()
@@ -173,12 +198,12 @@ public class Player : MonoBehaviour
         if (dropper != null && dropper.GetComponent<Renderer>().isVisible)
         {
             dropperVisible = true;
-            Debug.Log("Dropper is visible");
+            // Debug.Log("Dropper is visible");
         }
         else
         {
             dropperVisible = false;
-            Debug.Log("Dropper is invisible");
+            // Debug.Log("Dropper is invisible");
         }
 
         if (!dropperVisible && hasSpawned)

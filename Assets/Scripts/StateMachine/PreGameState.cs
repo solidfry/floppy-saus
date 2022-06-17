@@ -1,26 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PreGameState : IGameState
 {
+    GameManager gameManager;
 
-    bool roundStarted = false;
+    bool startRound = false;
 
     public IGameState DoState(GameManager gameManager)
     {
-        if (roundStarted)
+
+        if (gameManager.scoreText == null)
+            gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+
+        if (startRound)
         {
             return gameManager.preRoundState;
         }
 
-        roundStarted = false;
+        startRound = false;
         return gameManager.preGameState;
     }
 
-    public void RoundStart()
+    public void SetStartRound()
     {
-        roundStarted = true;
+        startRound = true;
     }
 
 }

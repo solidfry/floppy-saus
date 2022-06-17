@@ -13,14 +13,14 @@ public class ObstacleManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnPreRoundEvent += DestroyObjects;
-        GameEvents.OnPreRoundEvent += SpawnObstacles;
+        GameEvents.OnDestroyObstaclesEvent += DestroyObstacles;
+        GameEvents.OnSpawnObstaclesEvent += SpawnObstacles;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnPreRoundEvent -= DestroyObjects;
-        GameEvents.OnPreRoundEvent -= SpawnObstacles;
+        GameEvents.OnDestroyObstaclesEvent -= DestroyObstacles;
+        GameEvents.OnSpawnObstaclesEvent -= SpawnObstacles;
     }
 
     void SpawnObstacles()
@@ -40,7 +40,7 @@ public class ObstacleManager : MonoBehaviour
         }
     }
 
-    void DestroyObjects()
+    void DestroyObstacles()
     {
         foreach (Transform child in parentObject.transform)
         {

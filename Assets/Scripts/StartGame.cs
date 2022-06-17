@@ -4,10 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StartGame : MonoBehaviour
 {
-    public void Pressed()
+    public void NewRound()
     {
-        Debug.Log("Button pressed");
+        Debug.Log("New Round pressed");
         GameEvents.OnPreRoundEvent?.Invoke();
+        this.gameObject.SetActive(false);
+    }
+
+    public void NewGame()
+    {
+        Debug.Log("New Game pressed");
+        GameEvents.OnPreGameEvent?.Invoke();
         this.gameObject.SetActive(false);
     }
 }
