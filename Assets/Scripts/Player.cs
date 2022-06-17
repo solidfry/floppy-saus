@@ -162,14 +162,12 @@ public class Player : MonoBehaviour
 
     void DisableControls()
     {
-        if (controlsActive)
-            controlsActive = false;
+        controlsActive = false;
     }
 
     void EnableControls()
     {
-        if (!controlsActive)
-            controlsActive = true;
+        controlsActive = true;
     }
 
     void AssignPlayerObjects()

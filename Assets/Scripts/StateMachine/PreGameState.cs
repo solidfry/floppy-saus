@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
 public class PreGameState : IGameState
 {
-    GameManager gameManager;
-
-    bool startRound = false;
+    [SerializeField]
+    bool _startGame;
+    bool startGame
+    {
+        get => _startGame;
+        set => _startGame = value;
+    }
 
     public IGameState DoState(GameManager gameManager)
     {
@@ -15,18 +20,25 @@ public class PreGameState : IGameState
         if (gameManager.scoreText == null)
             gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
 
-        if (startRound)
+        if (startGame)
         {
+            DisableStartGame();
             return gameManager.preRoundState;
         }
 
-        startRound = false;
+        DisableStartGame();
         return gameManager.preGameState;
     }
 
-    public void SetStartRound()
+    public void EnableStartGame()
     {
-        startRound = true;
+        startGame = true;
     }
+
+    public void DisableStartGame()
+    {
+        startGame = false;
+    }
+
 
 }

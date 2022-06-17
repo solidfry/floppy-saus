@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+[System.Serializable]
 public class GameOverState : IGameState
 {
+    [SerializeField]
     private bool isGameOver = false;
+    [SerializeField]
     private bool newGame = false;
 
     public IGameState DoState(GameManager gameManager)
     {
-        if (isGameOver == true)
+        if (isGameOver)
         {
             isGameOver = false;
             Debug.Log("isGameOver was equal to true and is now equal to " + isGameOver);

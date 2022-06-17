@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = preGameState;
         GameEvents.OnPreGameEvent += gameOverState.NewGame;
-        GameEvents.OnPreRoundEvent += preGameState.SetStartRound;
+        GameEvents.OnPreRoundEvent += preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent += preRoundState.SetNewRound;
         GameEvents.OnPlayerScoredEvent += playingState.SetPlayerScored;
         GameEvents.OnPlayingEvent += preRoundState.SetPlaying;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.OnPreGameEvent -= gameOverState.NewGame;
-        GameEvents.OnPreRoundEvent -= preGameState.SetStartRound;
+        GameEvents.OnPreRoundEvent -= preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent -= preRoundState.SetNewRound;
         GameEvents.OnPlayerScoredEvent -= playingState.SetPlayerScored;
         GameEvents.OnPlayingEvent -= preRoundState.SetPlaying;

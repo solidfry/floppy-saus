@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PlayingState : IGameState
 {
     [SerializeField]
     private bool timerZero = false;
+    [SerializeField]
     private bool playerScored = false;
     public IGameState DoState(GameManager gameManager)
     {
