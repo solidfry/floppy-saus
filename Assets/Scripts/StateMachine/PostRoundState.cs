@@ -7,6 +7,6 @@ public class PostRoundState : IGameState
 {
     public IGameState DoState(GameManager gameManager)
     {
-        return gameManager.preRoundState;
+        return gameManager.postRoundState;
     }
 }

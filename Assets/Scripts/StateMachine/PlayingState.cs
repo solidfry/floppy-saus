@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class PlayingState : IGameState
 {
     [SerializeField]
@@ -13,8 +12,8 @@ public class PlayingState : IGameState
     {
         if (timerZero)
         {
-            GameEvents.OnGameOverEvent?.Invoke();
             timerZero = false;
+            GameEvents.OnGameOverEvent?.Invoke();
             return gameManager.gameOverState;
         }
 

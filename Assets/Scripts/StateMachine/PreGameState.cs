@@ -7,8 +7,8 @@ using TMPro;
 public class PreGameState : IGameState
 {
     [SerializeField]
-    bool _startGame;
-    bool startGame
+    bool _startGame = false;
+    public bool startGame
     {
         get => _startGame;
         set => _startGame = value;

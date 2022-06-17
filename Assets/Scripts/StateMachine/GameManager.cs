@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         GameEvents.OnPreRoundEvent += preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent += preRoundState.SetNewRound;
         GameEvents.OnPlayerScoredEvent += playingState.SetPlayerScored;
-        GameEvents.OnPlayingEvent += preRoundState.SetPlaying;
+        GameEvents.OnPlayingEvent += preRoundState.EnablePlaying;
         GameEvents.OnTimerZeroEvent += playingState.SetTimerIsZero;
         GameEvents.OnPlayerScoredEvent += Scored;
         GameEvents.OnPreGameEvent += ResetScore;
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         GameEvents.OnPreRoundEvent -= preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent -= preRoundState.SetNewRound;
         GameEvents.OnPlayerScoredEvent -= playingState.SetPlayerScored;
-        GameEvents.OnPlayingEvent -= preRoundState.SetPlaying;
+        GameEvents.OnPlayingEvent -= preRoundState.EnablePlaying;
         GameEvents.OnTimerZeroEvent -= playingState.SetTimerIsZero;
         GameEvents.OnPlayerScoredEvent -= Scored;
         GameEvents.OnPreGameEvent -= ResetScore;

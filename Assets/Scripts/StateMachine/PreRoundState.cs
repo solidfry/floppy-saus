@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class PreRoundState : IGameState
 {
     [SerializeField]
-    bool isPlaying = false;
+    bool _isPlaying = false;
+
+    bool isPlaying
+    {
+        get => _isPlaying;
+        set => _isPlaying = value;
+    }
+
     [SerializeField]
     bool newRound = false;
     public IGameState DoState(GameManager gameManager)
     {
-
+        Debug.Log("IsPlaying is " + isPlaying);
         if (newRound)
         {
             newRound = false;
-            isPlaying = false;
+            DisablePlaying();
             GameEvents.OnPreRoundEvent?.Invoke();
             Debug.Log("A new round has started");
             GameEvents.OnDestroyObstaclesEvent?.Invoke();
@@ -28,23 +34,30 @@ public class PreRoundState : IGameState
 
         if (isPlaying)
         {
-            isPlaying = false;
+            DisablePlaying();
             Debug.Log("Pre Round State is shifting to Playing state");
             return gameManager.playingState;
         }
 
         newRound = false;
-        isPlaying = false;
         return gameManager.preRoundState;
     }
 
-    public void SetPlaying()
+    public void EnablePlaying()
     {
         isPlaying = true;
+        // Debug.Log("EnablePlaying was done and isPlaying is " + isPlaying);
+    }
+
+    public void DisablePlaying()
+    {
+        isPlaying = false;
+        // Debug.Log("DisablePlaying was done and isPlaying is " + isPlaying);
     }
 
     public void SetNewRound()
     {
         newRound = true;
+        Debug.Log("SetNewRound was done");
     }
 }
