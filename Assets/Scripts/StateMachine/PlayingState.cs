@@ -5,14 +5,28 @@ using UnityEngine;
 public class PlayingState : IGameState
 {
     [SerializeField]
-    private bool timerZero = false;
+    private bool _timerZero = false;
+    public bool timerZero
+    {
+        get => _timerZero;
+        set => _timerZero = value;
+    }
+
     [SerializeField]
-    private bool playerScored = false;
+    private bool _playerScored = false;
+    public bool playerScored
+    {
+        get => _playerScored;
+        set => _playerScored = value;
+    }
+
     public IGameState DoState(GameManager gameManager)
     {
         if (timerZero)
         {
             timerZero = false;
+            gameManager.preRoundState.isPlaying = false;
+            gameManager.preGameState.startGame = false;
             GameEvents.OnGameOverEvent?.Invoke();
             return gameManager.gameOverState;
         }

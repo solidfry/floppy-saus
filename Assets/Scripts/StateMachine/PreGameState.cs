@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-[System.Serializable]
 public class PreGameState : IGameState
 {
-    [SerializeField]
     bool _startGame = false;
     public bool startGame
     {

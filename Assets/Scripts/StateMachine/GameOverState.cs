@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-[System.Serializable]
 public class GameOverState : IGameState
 {
     [SerializeField]
-    private bool isGameOver = false;
+    private bool _isGameOver = false;
+    public bool isGameOver
+    {
+        get => _isGameOver;
+        set => _isGameOver = value;
+    }
+
     [SerializeField]
-    private bool newGame = false;
+    private bool _newGame = false;
+    public bool newGame
+    {
+        get => _newGame;
+        set => _newGame = value;
+    }
 
     public IGameState DoState(GameManager gameManager)
     {

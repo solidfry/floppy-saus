@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class PreRoundState : IGameState
 {
-    [SerializeField]
     bool _isPlaying = false;
 
-    bool isPlaying
+    public bool isPlaying
     {
         get => _isPlaying;
         set => _isPlaying = value;
     }
 
-    [SerializeField]
-    bool newRound = false;
+    bool _newRound = false;
+
+    public bool newRound
+    {
+        get => _newRound;
+        set => _newRound = value;
+    }
     public IGameState DoState(GameManager gameManager)
     {
         Debug.Log("IsPlaying is " + isPlaying);
