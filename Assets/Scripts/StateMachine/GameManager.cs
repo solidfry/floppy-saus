@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float gameOverDelayTime;
 
+    public MenuState menuState = new MenuState();
     public PreGameState preGameState = new PreGameState();
     public PreRoundState preRoundState = new PreRoundState();
     public PlayingState playingState = new PlayingState();
@@ -33,7 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        currentState = preGameState;
+        currentState = menuState;
+        GameEvents.OnMenuStateEvent += menuState.LeaveMenu;
         GameEvents.OnPreGameEvent += gameOverState.NewGame;
         GameEvents.OnPreRoundEvent += preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent += preRoundState.SetNewRound;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
+        GameEvents.OnMenuStateEvent -= menuState.LeaveMenu;
         GameEvents.OnPreGameEvent -= gameOverState.NewGame;
         GameEvents.OnPreRoundEvent -= preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent -= preRoundState.SetNewRound;

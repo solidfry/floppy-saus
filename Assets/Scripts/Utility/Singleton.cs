@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Singleton : MonoBehaviour
 {
-    public static Singleton instance = null;
+    public static Singleton Instance { get; private set; }
 
-    // Start is called before the first frame update
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
             DontDestroyOnLoad(this);
         }
     }

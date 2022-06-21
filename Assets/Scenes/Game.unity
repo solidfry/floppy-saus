@@ -1875,17 +1875,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9030608209700406916, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
-      propertyPath: timeText
-      value: 
-      objectReference: {fileID: 1100862794}
     - target: {fileID: 9030608209700406936, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
       propertyPath: m_Name
       value: Game Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 9030608209700406936, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
-      propertyPath: m_TagString
-      value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 9030608209700406937, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
       propertyPath: m_RootOrder
@@ -1935,12 +1927,7 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 621466236}
-    - target: {fileID: 9030608209700406939, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
-      propertyPath: gameOverDelayTime
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9030608209700406916, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 035ceebee4ed5494caf084d070e7bc28, type: 3}
 --- !u!1001 &9041617656421127242
 PrefabInstance:

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9030608209700406917}
   m_Layer: 0
   m_Name: Game Manager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   currentStateName: 
   score: 0
   scoreText: {fileID: 0}
-  gameOverDelayTime: 0
+  gameOverDelayTime: 1
 --- !u!114 &9030608209700406917
 MonoBehaviour:
   m_ObjectHideFlags: 0

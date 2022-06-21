@@ -17,4 +17,9 @@ public class StartGame : MonoBehaviour
         GameEvents.OnPreGameEvent?.Invoke();
         this.gameObject.SetActive(false);
     }
+
+    public void LeaveMenu()
+    {
+        GameEvents.OnMenuStateEvent?.Invoke();
+    }
 }
