@@ -12,13 +12,16 @@ public class Level : ScriptableObject
 {
     [Header("Level Information")]
     public string levelName;
+    public string subTitle;
     public string description;
     public int sceneID;
+    public string callToAction;
     public Sprite image;
     public Worlds world;
 
-    void LoadScene()
+    public void LoadScene()
     {
+        Debug.Log("Attempted to load scene " + sceneID);
         SceneManager.LoadScene(sceneID);
     }
 }
