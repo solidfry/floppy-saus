@@ -6,5 +6,19 @@ using UnityEngine;
 public class World : ScriptableObject
 {
     [SerializeField]
-    public List<Level> levels = new List<Level>();
+    private List<Level> levels = new List<Level>();
+    [SerializeField]
+    private GameObject levelCard;
+
+    public void CreateWorldUI()
+    {
+        foreach (Level level in levels)
+        {
+            // Instance of LevelCardUI prefab
+            GameObject lc = Instantiate(levelCard);
+
+            LevelCardUI lcScript = lc.GetComponent<LevelCardUI>();
+
+        }
+    }
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db5f8f72cfbf55a46a0bcab4b0b4d2cb, type: 2}
   - {fileID: 11400000, guid: 21b0241af0179d14ca747eed53c8d7c9, type: 2}
   - {fileID: 11400000, guid: f7e795a8ed537954c9888befcec7f97a, type: 2}
+  levelCard: {fileID: 4681617630268136362, guid: 5bb230d9264e5ae4bae691be94110912, type: 3}

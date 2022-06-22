@@ -8,7 +8,7 @@ public class LevelCardUI : MonoBehaviour
 {
     [Header("Level Information")]
     [SerializeField]
-    Level levelData;
+    public Level levelData;
 
     private string levelName;
     private string subTitle = "Mission";
