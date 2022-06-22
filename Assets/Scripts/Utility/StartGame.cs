@@ -15,11 +15,14 @@ public class StartGame : MonoBehaviour
     {
         Debug.Log("New Game pressed");
         GameEvents.OnPreGameEvent?.Invoke();
-        this.gameObject.SetActive(false);
     }
 
     public void LeaveMenu()
     {
-        GameEvents.OnMenuStateEvent?.Invoke();
+        GameEvents.OnLeaveMenuStateEvent?.Invoke();
+    }
+    public void EnterMenu()
+    {
+        GameEvents.OnEnterMenuStateEvent?.Invoke();
     }
 }

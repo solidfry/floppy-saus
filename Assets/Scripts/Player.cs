@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         controls = new Inputs();
         controls.PlayerControls.Drop.performed += context => Drop();
         controls.PlayerControls.Movement.performed += context => Aim();
+        controls.PlayerControls.ResetPosition.performed += context => Respawn();
         if (dropper != null)
         {
             rb = dropper.GetComponent<Rigidbody2D>();
@@ -131,7 +132,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Dropped");
             GameEvents.OnPlayingEvent?.Invoke();
-            rb.isKinematic = false;
+            if (rb != null)
+                rb.isKinematic = false;
             DisableControls();
         }
     }

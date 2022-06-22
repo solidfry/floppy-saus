@@ -26,12 +26,12 @@ public class SplatManager : MonoBehaviour
 
     void PlayClip()
     {
-        if (clips == null)
-            return;
-
-        int clipToPlay = rand.Next(0, clips.Count);
-        source.clip = clips[clipToPlay];
-        source.Play();
+        if (clips != null)
+        {
+            int clipToPlay = rand.Next(0, clips.Count);
+            source.clip = clips[clipToPlay];
+            source.Play();
+        }
 
         //Debug.Log("Play audio clips of splat " + clips[clipToPlay]);
     }

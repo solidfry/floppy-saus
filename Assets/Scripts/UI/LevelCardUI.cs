@@ -30,6 +30,17 @@ public class LevelCardUI : MonoBehaviour
 
     private void Awake()
     {
+        AssignValues();
+    }
+
+    private void Start()
+    {
+        if (button != null)
+            button.onClick.AddListener(() => levelData.LoadScene());
+    }
+
+    public void AssignValues()
+    {
         if (levelData != null)
         {
             levelName = levelData.levelName;
@@ -47,15 +58,7 @@ public class LevelCardUI : MonoBehaviour
 
             if (buttonText != null)
                 buttonText.text = buttonLabel;
-
         }
-
-    }
-
-    private void Start()
-    {
-        if (button != null)
-            button.onClick.AddListener(() => levelData.LoadScene());
     }
 
 }

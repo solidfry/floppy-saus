@@ -19,4 +19,8 @@ public class MenuState : IGameState
     {
         leftMenu = true;
     }
+    public void EnterMenu()
+    {
+        leftMenu = false;
+    }
 }

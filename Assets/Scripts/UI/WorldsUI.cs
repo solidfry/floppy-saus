@@ -6,9 +6,11 @@ public class WorldsUI : MonoBehaviour
 {
     public WorldManager worldManager;
     public GameObject worldUIPrefab;
+    private Transform parentTransform;
 
     private void Awake()
     {
+        parentTransform = this.gameObject.transform;
         List<World> worlds = worldManager.worlds;
 
         foreach (World world in worlds)
@@ -16,11 +18,12 @@ public class WorldsUI : MonoBehaviour
             Debug.Log(
                 "The world instance has formed"
             );
-            //! This is fucked, says not instance of object
-            GameObject w = Instantiate(worldUIPrefab, this.gameObject.transform);
+
+            GameObject w = Instantiate(worldUIPrefab, parentTransform);
 
             if (w)
             {
+                w.name = world.worldName;
                 WorldUI wUI = w.GetComponent<WorldUI>();
                 if (wUI)
                 {

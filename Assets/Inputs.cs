@@ -44,6 +44,15 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ResetPosition"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a6a4b63-bc96-419e-8308-aa32d0fa3202"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,17 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df6fa394-9f0e-4838-b2b3-416ff6258d19"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""ResetPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -205,6 +225,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         m_PlayerControls = asset.FindActionMap("PlayerControls", throwIfNotFound: true);
         m_PlayerControls_Drop = m_PlayerControls.FindAction("Drop", throwIfNotFound: true);
         m_PlayerControls_Movement = m_PlayerControls.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerControls_ResetPosition = m_PlayerControls.FindAction("ResetPosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,12 +287,14 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private IPlayerControlsActions m_PlayerControlsActionsCallbackInterface;
     private readonly InputAction m_PlayerControls_Drop;
     private readonly InputAction m_PlayerControls_Movement;
+    private readonly InputAction m_PlayerControls_ResetPosition;
     public struct PlayerControlsActions
     {
         private @Inputs m_Wrapper;
         public PlayerControlsActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Drop => m_Wrapper.m_PlayerControls_Drop;
         public InputAction @Movement => m_Wrapper.m_PlayerControls_Movement;
+        public InputAction @ResetPosition => m_Wrapper.m_PlayerControls_ResetPosition;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -287,6 +310,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMovement;
+                @ResetPosition.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnResetPosition;
+                @ResetPosition.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnResetPosition;
+                @ResetPosition.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnResetPosition;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -297,6 +323,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @ResetPosition.started += instance.OnResetPosition;
+                @ResetPosition.performed += instance.OnResetPosition;
+                @ResetPosition.canceled += instance.OnResetPosition;
             }
         }
     }
@@ -314,5 +343,6 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     {
         void OnDrop(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnResetPosition(InputAction.CallbackContext context);
     }
 }

@@ -11,6 +11,7 @@ public enum Worlds
 public class Level : ScriptableObject
 {
     [Header("Level Information")]
+    public int levelID;
     public string levelName;
     public string subTitle;
     public string description;

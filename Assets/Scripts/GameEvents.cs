@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
-    public delegate void Menu();
+    public delegate void MenuEnter();
+    public delegate void MenuLeave();
     public delegate void PreGame();
     public delegate void PreRound();
     public delegate void SpawnObstacles();
@@ -20,7 +21,8 @@ public class GameEvents : MonoBehaviour
     /// <summary>
     /// User is in a menu
     /// </summary>
-    public static Menu OnMenuStateEvent;
+    public static MenuEnter OnEnterMenuStateEvent;
+    public static MenuLeave OnLeaveMenuStateEvent;
 
     /// <summary>
     /// Called before our game starts might be good for set up stuff

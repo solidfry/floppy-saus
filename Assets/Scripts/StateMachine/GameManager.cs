@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         currentState = menuState;
-        GameEvents.OnMenuStateEvent += menuState.LeaveMenu;
+        GameEvents.OnLeaveMenuStateEvent += menuState.LeaveMenu;
+        GameEvents.OnEnterMenuStateEvent += () => currentState = menuState;
+        GameEvents.OnEnterMenuStateEvent += menuState.EnterMenu;
         GameEvents.OnPreGameEvent += gameOverState.NewGame;
         GameEvents.OnPreRoundEvent += preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent += preRoundState.SetNewRound;
@@ -49,7 +51,8 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GameEvents.OnMenuStateEvent -= menuState.LeaveMenu;
+        GameEvents.OnLeaveMenuStateEvent -= menuState.LeaveMenu;
+        GameEvents.OnEnterMenuStateEvent -= menuState.EnterMenu;
         GameEvents.OnPreGameEvent -= gameOverState.NewGame;
         GameEvents.OnPreRoundEvent -= preGameState.EnableStartGame;
         GameEvents.OnPlayerScoredEvent -= preRoundState.SetNewRound;
