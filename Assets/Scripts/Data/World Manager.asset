@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6324f9ad69fa046b7123f316767a6d, type: 3}
   m_Name: World Manager
   m_EditorClassIdentifier: 
-  levels:
+  worlds:
   - {fileID: 11400000, guid: 248334186ada76b4b9e4fd2f4398b060, type: 2}

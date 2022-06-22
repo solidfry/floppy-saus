@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418ec20d090681b40a0580bae29c4212, type: 3}
   m_Name: World One
   m_EditorClassIdentifier: 
+  worldName: World One
   levels:
   - {fileID: 11400000, guid: 404c6b7d3e650224f8ca0d79576b1555, type: 2}
   - {fileID: 11400000, guid: db5f8f72cfbf55a46a0bcab4b0b4d2cb, type: 2}
   - {fileID: 11400000, guid: 21b0241af0179d14ca747eed53c8d7c9, type: 2}
   - {fileID: 11400000, guid: f7e795a8ed537954c9888befcec7f97a, type: 2}
-  levelCard: {fileID: 4681617630268136362, guid: 5bb230d9264e5ae4bae691be94110912, type: 3}

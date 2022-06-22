@@ -6,5 +6,5 @@ using UnityEngine;
 public class WorldManager : ScriptableObject
 {
     [SerializeField]
-    public List<World> levels = new List<World>();
+    public List<World> worlds = new List<World>();
 }
