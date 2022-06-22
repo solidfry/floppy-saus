@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   levelName: Mustard you a question
-  subTitle: 
+  subTitle: Level 3
   description: Mustard can be delicious on a sausage... Get it mustarded!
   sceneID: 6
   callToAction: 

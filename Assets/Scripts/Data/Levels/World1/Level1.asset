@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   levelName: Sink a Saus
-  subTitle: 
+  subTitle: Level 1
   description: "Get the sausage to the goal to proceed. The quicker you do it, the
     better you star rating will\_be!"
   sceneID: 4
