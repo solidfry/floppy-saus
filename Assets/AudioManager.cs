@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-
-    public static AudioManager audioManager = null;
+    public static AudioManager instance = null;
     public AudioSource audioSource;
     public Button toggleAudio;
     public Sprite audioOffImage;
@@ -14,14 +13,13 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-
-        if (audioManager != null && audioManager != this)
+        if (instance != null && instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
-            audioManager = this;
+            instance = this;
             DontDestroyOnLoad(this);
         }
 
