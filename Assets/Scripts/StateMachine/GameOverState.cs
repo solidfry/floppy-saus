@@ -3,54 +3,55 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 public class GameOverState : IGameState
 {
     [SerializeField]
-    private bool _isGameOver = false;
-    public bool isGameOver
+    private bool isGameOver = false;
+    public bool IsGameOver
     {
-        get => _isGameOver;
-        set => _isGameOver = value;
+        get => isGameOver;
+        set => isGameOver = value;
     }
 
     [SerializeField]
-    private bool _newGame = false;
-    public bool newGame
+    private bool isNewGame = false;
+    public bool IsNewGame
     {
-        get => _newGame;
-        set => _newGame = value;
+        get => isNewGame;
+        set => isNewGame = value;
     }
 
     public IGameState DoState(GameManager gameManager)
     {
-        if (isGameOver)
+        if (IsGameOver)
         {
-            isGameOver = false;
-            Debug.Log("isGameOver was equal to true and is now equal to " + isGameOver);
+            IsGameOver = false;
+            //Debug.Log("isGameOver was equal to true and is now equal to " + IsGameOver);
             return gameManager.gameOverState;
         }
 
-        if (newGame)
+        if (IsNewGame)
         {
-            newGame = false;
-            Debug.Log("newGame should be false and is " + newGame);
+            IsNewGame = false;
+            //Debug.Log("newGame should be false and is " + newGame);
             return gameManager.preGameState;
         }
-        newGame = false;
+        IsNewGame = false;
         return gameManager.gameOverState;
     }
 
     public IEnumerator DelayGameOver(float delayTime)
     {
-        isGameOver = true;
-        Debug.Log("isGameOver: " + isGameOver);
+        IsGameOver = true;
+        //Debug.Log("isGameOver: " + IsGameOver);
         yield return new WaitForSeconds(delayTime);
         SceneManager.LoadScene("GameOver");
     }
 
     public void NewGame()
     {
-        newGame = true;
+        IsNewGame = true;
         Debug.Log("New Game is true");
     }
 

@@ -82,9 +82,9 @@ public class GameManager : MonoBehaviour
         UpdateUI(score);
     }
 
-    void UpdateUI(int score)
+    void UpdateUI(int scoreToString)
     {
-        scoreText.text = score.ToString();
+        scoreText.text = scoreToString.ToString();
     }
 
     void GameOver()
