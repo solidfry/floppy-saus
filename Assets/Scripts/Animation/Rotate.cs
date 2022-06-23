@@ -1,13 +1,17 @@
 using UnityEngine;
 
-public enum Direction
-{
-    Forward, Backward, Random
-}
 
 // This script rotates stuff
 namespace Animation
 {
+    public enum Direction
+    {
+        Forward, Backward, Random
+    }
+    public enum Speed
+    {
+        Static, Random
+    }
     public class Rotate : MonoBehaviour
     {
         [SerializeField]
@@ -15,13 +19,6 @@ namespace Animation
 
         [SerializeField]
         int maxRotateSpeed = 10;
-
-       
-
-        public enum Speed
-        {
-            Static, Random
-        }
 
         [SerializeField]
         Direction rotationDirection = Direction.Random;
@@ -45,10 +42,17 @@ namespace Animation
         }
         private void FixedUpdate()
         {
-            DoRotate(rotationDirection, randomValue);
+            if (rotationDirection == Direction.Random)
+            {
+                DoRotate(rotationDirection, randomValue);
+            }
+            else
+            {
+                DoRotate(rotationDirection);
+            }
         }
 
-        void DoRotate(Direction direction, float randomValue)
+        void DoRotate(Direction direction)
         {
             switch (direction)
             {
@@ -58,6 +62,13 @@ namespace Animation
                 case Direction.Backward:
                     transform.Rotate(Vector3.back, Time.deltaTime * rotateSpeed, Space.World);
                     break;
+            }
+        }
+        
+        void DoRotate(Direction direction, float randomValue)
+        {
+            switch (direction)
+            {
                 case Direction.Random:
                     // Debug.Log("the random direction is " + randomValue);
                     Vector3 value = randomValue <= 50 ? Vector3.forward : Vector3.back;
