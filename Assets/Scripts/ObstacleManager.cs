@@ -25,11 +25,11 @@ public class ObstacleManager : MonoBehaviour
 
     void SpawnObstacles()
     {
-        Debug.Log("Spawn Obstacles");
+        // Debug.Log("Spawn Obstacles");
         foreach (GameObject obstacle in obstaclePrefabs)
         {
             int amountToSpawn = Random.Range(minSpawnAmount, maxSpawnAmount);
-            Debug.Log(amountToSpawn);
+            // Debug.Log(amountToSpawn);
             for (int i = 0; i < amountToSpawn; i++)
             {
                 Vector3 randomPosition = new Vector3(Random.Range(Boundaries.hBounds.x, Boundaries.hBounds.y), Random.Range(Boundaries.vBounds.x, Boundaries.vBounds.y), 0);
