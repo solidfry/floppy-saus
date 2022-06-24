@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using StateMachine;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -28,17 +29,17 @@ public class GameOverState : IGameState
         {
             IsGameOver = false;
             //Debug.Log("isGameOver was equal to true and is now equal to " + IsGameOver);
-            return gameManager.gameOverState;
+            return gameManager.GameOverState;
         }
 
         if (IsNewGame)
         {
             IsNewGame = false;
             //Debug.Log("newGame should be false and is " + newGame);
-            return gameManager.preGameState;
+            return gameManager.PreGameState;
         }
         IsNewGame = false;
-        return gameManager.gameOverState;
+        return gameManager.GameOverState;
     }
 
     public IEnumerator DelayGameOver(float delayTime)

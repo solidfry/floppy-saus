@@ -49,6 +49,9 @@ MonoBehaviour:
   score: 0
   scoreText: {fileID: 0}
   gameOverDelayTime: 1
+  currentSceneID: 0
+  currentLevelType: 0
+  worldManager: {fileID: 11400000, guid: 86a6b3a68f4be1949b5c785adadd7185, type: 2}
 --- !u!114 &9030608209700406917
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
+    public delegate void SetUp();
     public delegate void MenuEnter();
     public delegate void MenuLeave();
     public delegate void PreGame();
@@ -18,6 +19,11 @@ public class GameEvents : MonoBehaviour
     public delegate void TimerZero();
     public delegate void OutOfBounds();
 
+    ///<summary>
+    /// Some basic set up for the game when the game is initialised
+    ///</summary>
+    public static SetUp OnSetUpEvent;
+    
     /// <summary>
     /// User is in a menu
     /// </summary>
@@ -42,7 +48,7 @@ public class GameEvents : MonoBehaviour
     /// <summary>
     /// Destroy obstacles
     /// </summary>
-    public static SpawnObstacles OnDestroyObstaclesEvent;
+    public static DestroyObstacles OnDestroyObstaclesEvent;
 
     /// <summary>
     /// When the round starts we might reset a timer

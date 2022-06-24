@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using StateMachine;
 using UnityEngine;
 using TMPro;
 
@@ -15,17 +16,19 @@ public class PreGameState : IGameState
     public IGameState DoState(GameManager gameManager)
     {
 
-        if (gameManager.scoreText == null)
-            gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
-
+        if (gameManager.CurrentLevelType == LevelType.Endless) {
+            if (gameManager.scoreText == null)
+                gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+        }
+        
         if (startGame)
         {
             DisableStartGame();
-            return gameManager.preRoundState;
+            return gameManager.PreRoundState;
         }
 
         DisableStartGame();
-        return gameManager.preGameState;
+        return gameManager.PreGameState;
     }
 
     public void EnableStartGame()

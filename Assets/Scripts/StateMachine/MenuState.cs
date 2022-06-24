@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using StateMachine;
 using UnityEngine;
 
 public class MenuState : IGameState
@@ -10,9 +11,9 @@ public class MenuState : IGameState
     {
         if (leftMenu == true)
         {
-            return gameManager.preGameState;
+            return gameManager.PreGameState;
         }
-        return gameManager.menuState;
+        return gameManager.MenuState;
     }
 
     public void LeaveMenu()

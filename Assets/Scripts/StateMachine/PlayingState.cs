@@ -1,57 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using StateMachine;
 using UnityEngine;
 
 public class PlayingState : IGameState
 {
     [SerializeField]
-    private bool _timerZero = false;
-    public bool timerZero
+    private bool timerZero = false;
+    public bool TimerZero
     {
-        get => _timerZero;
-        set => _timerZero = value;
+        get => timerZero;
+        set => timerZero = value;
     }
 
     [SerializeField]
-    private bool _playerScored = false;
-    public bool playerScored
+    private bool playerScored = false;
+    public bool PlayerScored
     {
-        get => _playerScored;
-        set => _playerScored = value;
+        get => playerScored;
+        set => playerScored = value;
     }
 
     public IGameState DoState(GameManager gameManager)
     {
-        if (timerZero)
+        if (TimerZero)
         {
-            timerZero = false;
-            gameManager.preRoundState.isPlaying = false;
-            gameManager.preGameState.startGame = false;
+            TimerZero = false;
+            gameManager.PreRoundState.isPlaying = false;
+            gameManager.PreGameState.startGame = false;
             GameEvents.OnGameOverEvent?.Invoke();
-            return gameManager.gameOverState;
+            /* todo based on the game mode we need to add a condition here where the game over state will go to a post round screen */
+            return gameManager.GameOverState;
         }
 
-        if (playerScored)
+        if (PlayerScored)
         {
             // GameEvents.OnPreRoundEvent?.Invoke();
-            playerScored = false;
-            return gameManager.preRoundState;
+            PlayerScored = false;
+            return gameManager.PreRoundState;
         }
 
-        timerZero = false;
-        playerScored = false;
-        return gameManager.playingState;
+        TimerZero = false;
+        PlayerScored = false;
+        return gameManager.PlayingState;
     }
 
     public void SetTimerIsZero()
     {
-        timerZero = true;
+        TimerZero = true;
         Debug.Log("Timer Zero is true");
     }
 
     public void SetPlayerScored()
     {
-        playerScored = true;
+        PlayerScored = true;
         Debug.Log("Player scored YAY");
     }
 }

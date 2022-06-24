@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using StateMachine;
 using UnityEngine;
 
 public class PreRoundState : IGameState
@@ -32,19 +33,18 @@ public class PreRoundState : IGameState
             Debug.Log("DestroyObstaclesEvent has been invoked");
             GameEvents.OnSpawnObstaclesEvent?.Invoke();
             Debug.Log("OnSpawnObstaclesEvent has been invoked");
-
-            return gameManager.preRoundState;
+            return gameManager.PreRoundState;
         }
 
         if (isPlaying)
         {
             DisablePlaying();
             Debug.Log("Pre Round State is shifting to Playing state");
-            return gameManager.playingState;
+            return gameManager.PlayingState;
         }
 
         newRound = false;
-        return gameManager.preRoundState;
+        return gameManager.PreRoundState;
     }
 
     public void EnablePlaying()

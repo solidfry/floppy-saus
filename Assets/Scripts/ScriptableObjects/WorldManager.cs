@@ -7,4 +7,6 @@ public class WorldManager : ScriptableObject
 {
     [SerializeField]
     public List<World> worlds = new List<World>();
+
+    public Level endlessLevel;
 }

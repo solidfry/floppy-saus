@@ -2,25 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovementType
+{
+    Random,
+    Move,
+    Static
+}
 public class Goal : MonoBehaviour
 {
+    [SerializeField]
+    private MovementType movement;
     bool collidedWithGoal = false;
     Transform goalPosition;
 
     private void Awake()
     {
+        
         goalPosition = this.gameObject.transform;
         Debug.Log("The goal position:" + goalPosition.position);
     }
 
     private void OnEnable()
     {
-        GameEvents.OnPreRoundEvent += SetPosition;
+        if (movement == MovementType.Random) 
+            GameEvents.OnPreRoundEvent += SetPosition;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnPreRoundEvent -= SetPosition;
+        if (movement == MovementType.Random) 
+            GameEvents.OnPreRoundEvent -= SetPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
