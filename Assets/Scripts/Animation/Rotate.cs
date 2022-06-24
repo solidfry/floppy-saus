@@ -1,17 +1,8 @@
 using UnityEngine;
 
-
 // This script rotates stuff
 namespace Animation
 {
-    public enum Direction
-    {
-        Forward, Backward, Random
-    }
-    public enum Speed
-    {
-        Static, Random
-    }
     public class Rotate : MonoBehaviour
     {
         [SerializeField]

@@ -1,13 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum LevelType
-{
-    Endless,
-    Level,
-    None
-}
-
 [CreateAssetMenu(fileName = "Level", menuName = "Levels/Level", order = 1)]
 public class Level : ScriptableObject
 {

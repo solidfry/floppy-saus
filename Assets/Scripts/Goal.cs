@@ -1,49 +1,35 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+
 using Random = UnityEngine.Random;
 
-public enum Movement
-{
-    Random,
-    PingPong,
-    Static
-}
 public class Goal : MonoBehaviour
 {
-    [FormerlySerializedAs("movement")] [SerializeField]
+    [SerializeField]
     private Movement movementType;
     bool collidedWithGoal = false;
     Transform goalPosition;
 
-    [Header("PingPong Settings")] 
+    [Header("Movement Settings")] 
     [SerializeField]
     private float speed = 5f;
-
-    Vector2 pos1;
-    Vector2 pos2;
-    
+    [Header("Movement Waypoints")]
+    [SerializeField] private Transform[] waypoints;
+    [ReadOnly]
     [SerializeField]
-    private Transform position1;
-    [SerializeField]
-    private Transform position2;
+    private int listIndex = 0;
     
     private void Awake()
     {
-        pos1 = position1.position;
-        pos2 = position2.position;
-        
         goalPosition = this.gameObject.transform;
         Debug.Log("The goal position:" + goalPosition.position);
     }
 
     private void Update()
     {
-        SetMovement(movementType);
+        DoMovement(movementType);
     }
 
     private void OnEnable()
@@ -70,7 +56,17 @@ public class Goal : MonoBehaviour
 
     private void PingPong()
     {
-        goalPosition.position = Vector2.Lerp(pos1, pos2, Mathf.PingPong(speed * Time.time, 1f));
+        if (Vector3.Distance(goalPosition.position, waypoints[listIndex].position) < 0.1f)
+        {
+            listIndex++;
+        }
+
+        if (listIndex >= waypoints.Length)
+        {
+            listIndex = 0;
+        }
+        goalPosition.position = Vector3.MoveTowards(goalPosition.position, waypoints[listIndex].position,
+            Time.deltaTime * speed);
     }
 
     void SetPosition()
@@ -81,8 +77,24 @@ public class Goal : MonoBehaviour
         collidedWithGoal = false;
         Debug.Log("Set position of goal value: " + pos);
     }
+
+    private void OnDrawGizmos()
+    {
+        GenerateWayPoints();
+    }
+
+    void GenerateWayPoints()
+    {
+        float colourShift = 0f; 
+        foreach (Transform wayPoint in waypoints)
+        {
+            colourShift += .1f;
+            Gizmos.color = Color.HSVToRGB(colourShift, 1, 1);
+            Gizmos.DrawWireSphere(wayPoint.position,1f);
+        }
+    }
     
-    public void SetMovement(Movement movementType)
+    public void DoMovement(Movement movementType)
     {
         switch (movementType)
         {

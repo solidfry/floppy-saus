@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,5 +6,5 @@ public class World : ScriptableObject
 {
     public string worldName;
     [SerializeField]
-    public List<Level> levels = new List<Level>();
+    public List<Level> levels = new();
 }
