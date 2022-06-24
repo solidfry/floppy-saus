@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "World Manager", menuName = "Levels/WorldManager", order = 3)]
+[CreateAssetMenu(fileName = "World Manager", menuName = "Levels/WorldManager", order =+ 1)]
 public class WorldManager : ScriptableObject
 {
     [SerializeField]

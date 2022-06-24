@@ -1,36 +1,60 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
-public enum MovementType
+public enum Movement
 {
     Random,
-    Move,
+    PingPong,
     Static
 }
 public class Goal : MonoBehaviour
 {
-    [SerializeField]
-    private MovementType movement;
+    [FormerlySerializedAs("movement")] [SerializeField]
+    private Movement movementType;
     bool collidedWithGoal = false;
     Transform goalPosition;
 
+    [Header("PingPong Settings")] 
+    [SerializeField]
+    private float speed = 5f;
+
+    Vector2 pos1;
+    Vector2 pos2;
+    
+    [SerializeField]
+    private Transform position1;
+    [SerializeField]
+    private Transform position2;
+    
     private void Awake()
     {
+        pos1 = position1.position;
+        pos2 = position2.position;
         
         goalPosition = this.gameObject.transform;
         Debug.Log("The goal position:" + goalPosition.position);
     }
 
+    private void Update()
+    {
+        SetMovement(movementType);
+    }
+
     private void OnEnable()
     {
-        if (movement == MovementType.Random) 
+        if (movementType == Movement.Random) 
             GameEvents.OnPreRoundEvent += SetPosition;
     }
 
     private void OnDisable()
     {
-        if (movement == MovementType.Random) 
+        if (movementType == Movement.Random) 
             GameEvents.OnPreRoundEvent -= SetPosition;
     }
 
@@ -44,6 +68,11 @@ public class Goal : MonoBehaviour
         }
     }
 
+    private void PingPong()
+    {
+        goalPosition.position = Vector2.Lerp(pos1, pos2, Mathf.PingPong(speed * Time.time, 1f));
+    }
+
     void SetPosition()
     {
         float pos = Random.Range(Boundaries.hBounds.x, Boundaries.hBounds.y);
@@ -51,5 +80,22 @@ public class Goal : MonoBehaviour
         goalPosition.position = newPos;
         collidedWithGoal = false;
         Debug.Log("Set position of goal value: " + pos);
+    }
+    
+    public void SetMovement(Movement movementType)
+    {
+        switch (movementType)
+        {
+            case Movement.Random:
+                goalPosition = this.gameObject.transform;
+                break;
+            case Movement.PingPong:
+                PingPong();
+                break;
+            case Movement.Static:
+                goalPosition = this.gameObject.transform;
+                break;
+            default: throw new ArgumentException("Movement enum set incorrectly");
+        }
     }
 }
