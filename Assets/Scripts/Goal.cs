@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 using Random = UnityEngine.Random;
 
@@ -19,7 +17,7 @@ public class Goal : MonoBehaviour
     [SerializeField] private Transform[] waypoints;
     [ReadOnly]
     [SerializeField]
-    private int listIndex = 0;
+    private int listIndex;
     
     private void Awake()
     {
@@ -94,7 +92,7 @@ public class Goal : MonoBehaviour
         }
     }
     
-    public void DoMovement(Movement movementType)
+    private void DoMovement(Movement movementType)
     {
         switch (movementType)
         {
