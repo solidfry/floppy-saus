@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelID: 2
   sceneID: 5
+  levelType: 1
   levelName: Sauce that saus baby!
   subTitle: Level 2
-  levelType: 1
   callToAction: 
+  rankRequirements: 080000000500000003000000
   description: "You will need to get sauce on your saus in order to win this\_one!"
   image: {fileID: 0}
+  playerCompletedTime: 0
+  playerRank: 0

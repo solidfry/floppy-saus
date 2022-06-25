@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelID: 1
   sceneID: 4
+  levelType: 1
   levelName: Sink a Saus
   subTitle: Level 1
-  levelType: 1
   callToAction: 
+  rankRequirements: 080000000500000003000000
   description: "Get the sausage to the goal to proceed. The quicker you do it, the
     better you star rating will\_be!"
   image: {fileID: 0}
+  playerCompletedTime: 0
+  playerRank: 0

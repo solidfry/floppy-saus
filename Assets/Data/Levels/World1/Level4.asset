@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelID: 4
   sceneID: 7
-  levelName: Onion you joking?
-  subTitle: Level 3
   levelType: 1
+  levelName: Onion you joking?
+  subTitle: Level 4
   callToAction: 
+  rankRequirements: 080000000500000003000000
   description: Touch an onion to boost through the blocks.
   image: {fileID: 0}
+  playerCompletedTime: 0
+  playerRank: 0

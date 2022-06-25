@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelID: 3
   sceneID: 6
+  levelType: 1
   levelName: Mustard you a question
   subTitle: Level 3
-  levelType: 1
   callToAction: 
+  rankRequirements: 080000000500000003000000
   description: Mustard can be delicious on a sausage... Get it mustarded!
   image: {fileID: 0}
+  playerCompletedTime: 5
+  playerRank: 0
