@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 72db40722974d894398fdd3521c1dfe4
   - enabled: 1
-    path: Assets/Scenes/Levels/EndlessGame.unity
-    guid: eb592ccd2dc6ced419a81bc93953fe3f
-  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 6f8d16fdbf8ca724892fb58196b6ef49
   - enabled: 1
@@ -20,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: a66d6589daf12c9468f0796628be66c0
+  - enabled: 1
+    path: Assets/Scenes/Levels/EndlessGame.unity
+    guid: eb592ccd2dc6ced419a81bc93953fe3f
   - enabled: 1
     path: Assets/Scenes/Levels/World1/Level1.unity
     guid: 07053d9e63ef3934ea5ab9612b0743e4

@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Endless
   m_EditorClassIdentifier: 
   levelID: 0
-  sceneID: 1
-  levelName: Endless
-  subTitle: Play forever
+  sceneID: 4
   levelType: 0
+  levelName: Endless
+  subTitle: Level 0
   callToAction: 
+  rankRequirements: 000000000000000000000000
   description: Get the highest score you can in this endless mode!
   image: {fileID: 0}
+  playerCompletedTime: 0
+  playerRank: 0
