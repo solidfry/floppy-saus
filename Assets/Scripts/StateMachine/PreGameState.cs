@@ -1,27 +1,45 @@
-using StateMachine;
 using UnityEngine;
 using TMPro;
-
+using StateMachine;
+[System.Serializable] 
 public class PreGameState : IGameState
 {
-    bool _startGame = false;
-    public bool startGame
+    [SerializeField]
+    bool startGame = false;
+    public bool StartGame
     {
-        get => _startGame;
-        set => _startGame = value;
+        get => startGame;
+        set => startGame = value;
+    }
+    [SerializeField]
+    private bool newPreGameState;
+
+    public bool NewPreGameState
+    {
+        get => newPreGameState;
+        set => newPreGameState = value;
     }
 
     public IGameState DoState(GameManager gameManager)
     {
-
-        if (gameManager.CurrentLevelType == LevelType.Endless) {
-            if (gameManager.scoreText == null)
-                gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+        if (NewPreGameState)
+        {
+            NewPreGameState = false;
+            Debug.Log("OnPreGameEvent was run" );
+            GameEvents.OnPreGameEvent?.Invoke();
         }
-        
-        if (startGame)
+
+        if (gameManager.CurrentLevelType == LevelType.Endless && gameManager.scoreText == null)
+        {
+            if (GameObject.Find("ScoreText")) {
+                gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+            }
+        }
+
+        if (StartGame)
         {
             DisableStartGame();
+            NewPreGameState = true;
             return gameManager.PreRoundState;
         }
 
@@ -31,12 +49,12 @@ public class PreGameState : IGameState
 
     public void EnableStartGame()
     {
-        startGame = true;
+        StartGame = true;
     }
 
-    public void DisableStartGame()
+    void DisableStartGame()
     {
-        startGame = false;
+        StartGame = false;
     }
 
 

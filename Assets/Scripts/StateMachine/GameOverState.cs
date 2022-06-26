@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using StateMachine;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-// ReSharper disable once CheckNamespace
+[System.Serializable]
 public class GameOverState : IGameState
 {
     [SerializeField]
@@ -27,24 +26,31 @@ public class GameOverState : IGameState
     {
         if (IsGameOver)
         {
+            GameEvents.OnGameOverEvent?.Invoke();
+            IsNewGame = false;
             IsGameOver = false;
-            //Debug.Log("isGameOver was equal to true and is now equal to " + IsGameOver);
-            return gameManager.GameOverState;
+            if(SceneManager.GetActiveScene().name != "GameOver") { 
+                gameManager.StartCoroutine(DelayGameOver(gameManager.gameOverDelayTime));
+                Debug.Log("Loading GAME OVER SCREEN");
+                return gameManager.GameOverState;
+            }
         }
 
         if (IsNewGame)
         {
             IsNewGame = false;
-            //Debug.Log("newGame should be false and is " + newGame);
+            IsGameOver = false;
+            Debug.Log("newGame should be false and is " + IsNewGame);
             return gameManager.PreGameState;
         }
         IsNewGame = false;
+        IsGameOver = true;
         return gameManager.GameOverState;
     }
 
     public IEnumerator DelayGameOver(float delayTime)
     {
-        IsGameOver = true;
+        IsGameOver = false;
         //Debug.Log("isGameOver: " + IsGameOver);
         yield return new WaitForSeconds(delayTime);
         SceneManager.LoadScene("GameOver");
@@ -54,6 +60,12 @@ public class GameOverState : IGameState
     {
         IsNewGame = true;
         Debug.Log("New Game is true");
+    }
+
+    public void SetIsGameOver()
+    {
+        IsGameOver = true;
+        Debug.Log("IsGameOver is " + IsGameOver);
     }
 
 }

@@ -32,12 +32,14 @@ public class Goal : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEvents.OnPlayerScoredEvent += EnableCollidedWithGoal;
         if (movementType == Movement.Random) 
             GameEvents.OnPreRoundEvent += SetPosition;
     }
 
     private void OnDisable()
     {
+        GameEvents.OnPlayerScoredEvent -= EnableCollidedWithGoal;
         if (movementType == Movement.Random) 
             GameEvents.OnPreRoundEvent -= SetPosition;
     }
@@ -47,7 +49,7 @@ public class Goal : MonoBehaviour
         if ((other.CompareTag("Dropper") || other.CompareTag("Player")) && collidedWithGoal == false)
         {
             Debug.Log("The Goal was hit");
-            collidedWithGoal = true;
+            EnableCollidedWithGoal();
             GameEvents.OnPlayerScoredEvent?.Invoke();
         }
     }
@@ -72,7 +74,7 @@ public class Goal : MonoBehaviour
         float pos = Random.Range(Boundaries.hBounds.x, Boundaries.hBounds.y);
         Vector3 newPos = new Vector3(pos, goalPosition.position.y, 0);
         goalPosition.position = newPos;
-        collidedWithGoal = false;
+        DisableCollidedWithGoal();
         Debug.Log("Set position of goal value: " + pos);
     }
 
@@ -107,5 +109,15 @@ public class Goal : MonoBehaviour
                 break;
             default: throw new ArgumentException("Movement enum set incorrectly");
         }
+    }
+
+    void DisableCollidedWithGoal()
+    {
+        collidedWithGoal = false;
+    }
+
+    void EnableCollidedWithGoal()
+    {
+        collidedWithGoal = true;
     }
 }

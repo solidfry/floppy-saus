@@ -1,27 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using System;
 using StateMachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[Serializable] 
 public class MenuState : IGameState
 {
-    bool leftMenu = false;
-
     public IGameState DoState(GameManager gameManager)
     {
-        if (leftMenu == true)
+        if (gameManager.CurrentLevelType == LevelType.None)
         {
+            return gameManager.MenuState;
+        }
+
+        if (gameManager.CurrentLevelType != LevelType.None )
+        {
+            Debug.Log("CurrentLevelType was not None so we went to PreGame");
             return gameManager.PreGameState;
         }
+        
         return gameManager.MenuState;
-    }
-
-    public void LeaveMenu()
-    {
-        leftMenu = true;
-    }
-    public void EnterMenu()
-    {
-        leftMenu = false;
     }
 }

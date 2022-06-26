@@ -1,6 +1,9 @@
-using StateMachine;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using StateMachine;
 
+[Serializable] 
 public class PlayingState : IGameState
 {
     [SerializeField]
@@ -10,7 +13,6 @@ public class PlayingState : IGameState
         get => timerZero;
         set => timerZero = value;
     }
-
     [SerializeField]
     private bool playerScored = false;
     public bool PlayerScored
@@ -24,18 +26,25 @@ public class PlayingState : IGameState
         if (TimerZero)
         {
             TimerZero = false;
-            gameManager.PreRoundState.isPlaying = false;
-            gameManager.PreGameState.startGame = false;
-            GameEvents.OnGameOverEvent?.Invoke();
+            gameManager.PreRoundState.IsPlaying = false;
+            gameManager.PreGameState.StartGame = false;
+//            GameEvents.OnGameOverEvent?.Invoke();
             /* todo based on the game mode we need to add a condition here where the game over state will go to a post round screen */
             return gameManager.GameOverState;
         }
 
-        if (PlayerScored)
+        if (PlayerScored && gameManager.CurrentLevelType == LevelType.Endless)
         {
             // GameEvents.OnPreRoundEvent?.Invoke();
             PlayerScored = false;
             return gameManager.PreRoundState;
+        }
+
+        if (PlayerScored && gameManager.CurrentLevelType == LevelType.Level)
+        {
+            PlayerScored = false;
+            SceneManager.LoadScene("PostRound");
+            return gameManager.PostRoundState;
         }
 
         TimerZero = false;

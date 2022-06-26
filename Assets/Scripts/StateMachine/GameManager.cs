@@ -26,27 +26,31 @@ namespace StateMachine
         [field: ReadOnly]
         [field: SerializeField]
         public LevelType CurrentLevelType { get; private set; }
-
+        [field: ReadOnly]
+        [field: SerializeField]
+        public Level CurrentLevel { get; private set; }
+        [field: ReadOnly]
+        [field: SerializeField]
+        public Level PreviousLevel { get; private set; }
         // todo Refactor this score to be not in the manager
         [SerializeField]
         private int score = 0;
         [SerializeField]
         public TMP_Text scoreText;
         [SerializeField]
-        private float gameOverDelayTime;
+        public float gameOverDelayTime { get; private set; }
         [SerializeField]
         private WorldManager worldManager;
         
        
         public List<Level> allLevels = new();
        
-        
-        public readonly MenuState MenuState = new();
-        public readonly PreGameState PreGameState = new();
-        public readonly PreRoundState PreRoundState = new();
-        public readonly PlayingState PlayingState = new();
-        public readonly PostRoundState PostRoundState = new();
-        public readonly GameOverState GameOverState = new();
+        [SerializeField] public MenuState MenuState = new();
+        [SerializeField] public PreGameState PreGameState = new();
+        [SerializeField] public PreRoundState PreRoundState = new();
+        [SerializeField] public PlayingState PlayingState = new();
+        [SerializeField] public PostRoundState PostRoundState = new();
+        [SerializeField] public GameOverState GameOverState = new();
 
         private void Awake()
         {
@@ -63,9 +67,7 @@ namespace StateMachine
             CurrentLevelType = GetCurrentLevelType();
             currentState = MenuState;
             GameEvents.OnSetUpEvent += GetAllLevels;
-            GameEvents.OnLeaveMenuStateEvent += MenuState.LeaveMenu;
             GameEvents.OnEnterMenuStateEvent += () => currentState = MenuState;
-            GameEvents.OnEnterMenuStateEvent += MenuState.EnterMenu;
             GameEvents.OnPreGameEvent += GameOverState.NewGame;
             GameEvents.OnPreRoundEvent += PreGameState.EnableStartGame;
             GameEvents.OnPlayerScoredEvent += PreRoundState.SetNewRound;
@@ -74,14 +76,12 @@ namespace StateMachine
             GameEvents.OnTimerZeroEvent += PlayingState.SetTimerIsZero;
             GameEvents.OnPlayerScoredEvent += Scored;
             GameEvents.OnPreGameEvent += ResetScore;
-            GameEvents.OnGameOverEvent += GameOver;
+            GameEvents.OnTimerZeroEvent += GameOverState.SetIsGameOver;
         }
 
         private void OnDisable()
         {
             GameEvents.OnSetUpEvent -= GetAllLevels;
-            GameEvents.OnLeaveMenuStateEvent -= MenuState.LeaveMenu;
-            GameEvents.OnEnterMenuStateEvent -= MenuState.EnterMenu;
             GameEvents.OnPreGameEvent -= GameOverState.NewGame;
             GameEvents.OnPreRoundEvent -= PreGameState.EnableStartGame;
             GameEvents.OnPlayerScoredEvent -= PreRoundState.SetNewRound;
@@ -90,7 +90,7 @@ namespace StateMachine
             GameEvents.OnTimerZeroEvent -= PlayingState.SetTimerIsZero;
             GameEvents.OnPlayerScoredEvent -= Scored;
             GameEvents.OnPreGameEvent -= ResetScore;
-            GameEvents.OnGameOverEvent -= GameOver;
+            GameEvents.OnTimerZeroEvent -= GameOverState.SetIsGameOver;
         }
 
         private void Update()
@@ -105,6 +105,10 @@ namespace StateMachine
             currentStateName = currentState.ToString();
             currentSceneID = SceneManager.GetActiveScene().buildIndex;
             GetCurrentLevelType();
+            if (CurrentLevelType == LevelType.Level)
+            {
+                CurrentLevel = GetCurrentLevel();
+            }
         }
 
         private void Scored()
@@ -121,16 +125,17 @@ namespace StateMachine
 
         void UpdateUI(int scoreToString)
         {
-            scoreText.text = scoreToString.ToString();
+            if (scoreText != null)
+                scoreText.text = scoreToString.ToString();
         }
 
-        /// <summary>
-        /// Add a short delay before new scene when the game over state is activated
-        /// </summary>
-        void GameOver()
-        {
-            StartCoroutine(GameOverState.DelayGameOver(gameOverDelayTime));
-        }
+//        /// <summary>
+//        /// Add a short delay before new scene when the game over state is activated
+//        /// </summary>
+//        void GameOver()
+//        {
+//            StartCoroutine(GameOverState.DelayGameOver(gameOverDelayTime));
+//        }
 
         /// <summary>
         /// Get all the levels + the endless level from the world manager and add them to the allLevels list
@@ -139,7 +144,7 @@ namespace StateMachine
         {
             if (worldManager == null)
             {
-                Debug.Log("worldManager was null");
+                Debug.LogError("worldManager was null");
                 return;
             }
             
@@ -147,10 +152,10 @@ namespace StateMachine
             foreach (var level in worldManager.worlds.SelectMany(world => world.levels))
             {
                 allLevels.Add(level);
-                Debug.Log(level + " was added");
+//                Debug.Log(level + " was added");
             }
 
-            Debug.Log(allLevels.Count);
+//            Debug.Log(allLevels.Count);
         }
 
         /// <summary>
@@ -164,10 +169,14 @@ namespace StateMachine
             {
                 return CurrentLevelType = levelIDToMatch.levelType;
             }
-            else
-            {
-                return CurrentLevelType = LevelType.None;
-            }
+
+            return CurrentLevelType = LevelType.None;
+        }
+
+        Level GetCurrentLevel()
+        {
+            Level currentLevel = allLevels.Find(level => level.sceneID == currentSceneID);
+            return currentLevel;
         }
 
     }

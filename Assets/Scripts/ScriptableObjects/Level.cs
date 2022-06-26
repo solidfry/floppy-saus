@@ -40,8 +40,20 @@ public class Level : ScriptableObject
 
     private Rank DeterminePlayerRank()
     {
-        // 0 is none
-        return Rank.None;
+        int t = playerCompletedTime;
+        if (t > rankRequirements[0] || t == 0)
+        {
+            return Rank.None;
+        } 
+        if (t > 0 && t <= rankRequirements.Min())
+        {
+            return Rank.Three;
+        }
+        if (t <= rankRequirements[1] && t > rankRequirements.Min())
+        {
+            return Rank.Two;
+        }
+        return Rank.One;
     }
     
     private void SetPlayerRank(Rank newRank)

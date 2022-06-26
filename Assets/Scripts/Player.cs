@@ -25,7 +25,57 @@ public class Player : MonoBehaviour
     Vector2 dropperStartLocation;
     Rigidbody2D rb;
     Transform tr;
+    
+    private void OnEnable()
+    {
+        controls.Enable();
 
+        GameEvents.OnPlayerScoredEvent += DisableControls;
+
+        GameEvents.OnPlayerScoredEvent += Respawn;
+
+        GameEvents.OnPreGameEvent += DisableControls;
+
+        GameEvents.OnPreRoundEvent += EnableControls;
+
+        GameEvents.OnPreRoundEvent += EnableHasSpawned;
+
+        GameEvents.OnPlayingEvent += DisableControls;
+
+        GameEvents.OnOutOfBoundsEvent += Respawn;
+
+        GameEvents.OnOutOfBoundsEvent += EnableControls;
+
+        GameEvents.OnGameOverEvent += DisableControls;
+
+        GameEvents.OnGameOverEvent += DisableHasSpawned;
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+
+        GameEvents.OnPlayerScoredEvent -= DisableControls;
+
+        GameEvents.OnPlayerScoredEvent -= Respawn;
+
+        GameEvents.OnPreGameEvent -= DisableControls;
+
+        GameEvents.OnPreRoundEvent -= EnableControls;
+
+        GameEvents.OnPreRoundEvent -= EnableHasSpawned;
+
+        GameEvents.OnPlayingEvent -= DisableControls;
+
+        GameEvents.OnOutOfBoundsEvent -= Respawn;
+
+        GameEvents.OnOutOfBoundsEvent -= EnableControls;
+
+        GameEvents.OnGameOverEvent -= DisableControls;
+
+        GameEvents.OnGameOverEvent -= DisableHasSpawned;
+    }
+    
     private void Awake()
     {
         controls = new Inputs();
@@ -76,56 +126,6 @@ public class Player : MonoBehaviour
         IsVisible();
     }
 
-    private void OnEnable()
-    {
-        controls.Enable();
-
-        GameEvents.OnPlayerScoredEvent += DisableControls;
-
-        GameEvents.OnPlayerScoredEvent += Respawn;
-
-        GameEvents.OnPreGameEvent += DisableControls;
-
-        GameEvents.OnPreRoundEvent += EnableControls;
-
-        GameEvents.OnPreRoundEvent += EnableHasSpawned;
-
-        GameEvents.OnPlayingEvent += DisableControls;
-
-        GameEvents.OnOutOfBoundsEvent += Respawn;
-
-        GameEvents.OnOutOfBoundsEvent += EnableControls;
-
-        GameEvents.OnGameOverEvent += DisableControls;
-
-        GameEvents.OnGameOverEvent += DisableHasSpawned;
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-
-        GameEvents.OnPlayerScoredEvent -= DisableControls;
-
-        GameEvents.OnPlayerScoredEvent -= Respawn;
-
-        GameEvents.OnPreGameEvent -= DisableControls;
-
-        GameEvents.OnPreRoundEvent -= EnableControls;
-
-        GameEvents.OnPreRoundEvent -= EnableHasSpawned;
-
-        GameEvents.OnPlayingEvent -= DisableControls;
-
-        GameEvents.OnOutOfBoundsEvent -= Respawn;
-
-        GameEvents.OnOutOfBoundsEvent -= EnableControls;
-
-        GameEvents.OnGameOverEvent -= DisableControls;
-
-        GameEvents.OnGameOverEvent -= DisableHasSpawned;
-    }
-
     void Drop()
     {
         if (controlsActive)
@@ -148,6 +148,7 @@ public class Player : MonoBehaviour
     {
         if (dropper != null)
         {
+            Debug.Log("-------------DROPPER WAS NOT NULL AND THEREFORE IT IS RESPAWNING------------------");
             Destroy(dropper.transform.parent.gameObject);
             GameObject newDropper = Instantiate(dropperPrefab, dropperStartLocation, Quaternion.Euler(0, 0, -90));
             AssignPlayerObjects();

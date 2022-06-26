@@ -1,67 +1,74 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using StateMachine;
 using UnityEngine;
 
+[Serializable]
 public class PreRoundState : IGameState
 {
-    bool _isPlaying = false;
+    [SerializeField]
+    bool isPlaying = false;
 
-    public bool isPlaying
+    public bool IsPlaying
     {
-        get => _isPlaying;
-        set => _isPlaying = value;
+        get => isPlaying;
+        set => isPlaying = value;
     }
+    
+    [SerializeField]
+    bool newRound = false;
 
-    bool _newRound = false;
-
-    public bool newRound
+    public bool NewRound
     {
-        get => _newRound;
-        set => _newRound = value;
+        get => newRound;
+        set => newRound = value;
     }
     public IGameState DoState(GameManager gameManager)
     {
-        Debug.Log("IsPlaying is " + isPlaying);
-        if (newRound)
+//        Debug.Log("IsPlaying is " + IsPlaying);
+        if (gameManager.CurrentLevelType == LevelType.Endless)
         {
-            newRound = false;
-            DisablePlaying();
-            GameEvents.OnPreRoundEvent?.Invoke();
-            Debug.Log("A new round has started");
-            GameEvents.OnDestroyObstaclesEvent?.Invoke();
-            Debug.Log("DestroyObstaclesEvent has been invoked");
-            GameEvents.OnSpawnObstaclesEvent?.Invoke();
-            Debug.Log("OnSpawnObstaclesEvent has been invoked");
-            return gameManager.PreRoundState;
+            if (NewRound)
+            {
+                NewRound = false;
+                DisablePlaying();
+                
+                GameEvents.OnPreRoundEvent?.Invoke();
+                Debug.Log("A new round has started");
+                GameEvents.OnDestroyObstaclesEvent?.Invoke();
+                Debug.Log("DestroyObstaclesEvent has been invoked");
+                GameEvents.OnSpawnObstaclesEvent?.Invoke();
+                Debug.Log("OnSpawnObstaclesEvent has been invoked");
+               
+                return gameManager.PreRoundState;
+            } 
         }
 
-        if (isPlaying)
+        if (IsPlaying)
         {
             DisablePlaying();
             Debug.Log("Pre Round State is shifting to Playing state");
             return gameManager.PlayingState;
         }
 
-        newRound = false;
+        NewRound = false;
         return gameManager.PreRoundState;
     }
 
     public void EnablePlaying()
     {
-        isPlaying = true;
+        IsPlaying = true;
         // Debug.Log("EnablePlaying was done and isPlaying is " + isPlaying);
     }
 
     public void DisablePlaying()
     {
-        isPlaying = false;
+        IsPlaying = false;
         // Debug.Log("DisablePlaying was done and isPlaying is " + isPlaying);
     }
 
     public void SetNewRound()
     {
-        newRound = true;
+        NewRound = true;
         Debug.Log("SetNewRound was done");
     }
 }

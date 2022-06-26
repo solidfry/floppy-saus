@@ -84,6 +84,7 @@ public class Timer : MonoBehaviour
     public void SetTimerInactive()
     {
         timerRunning = false;
+        Debug.Log("TimerZeroEvent OCCURED");
         GameEvents.OnTimerZeroEvent?.Invoke();
     }
 

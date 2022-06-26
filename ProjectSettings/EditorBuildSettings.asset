@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 6f8d16fdbf8ca724892fb58196b6ef49
   - enabled: 1
+    path: Assets/Scenes/PostRound.unity
+    guid: 484e3ad49a014c743af0fa421a876b2f
+  - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: a66d6589daf12c9468f0796628be66c0
   - enabled: 1
