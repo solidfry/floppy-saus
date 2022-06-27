@@ -1,25 +1,23 @@
-
-using System;
-using StateMachine;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-[Serializable] 
-public class MenuState : IGameState
+namespace StateMachine
 {
-    public IGameState DoState(GameManager gameManager)
+    public class MenuState : IGameState
     {
-        if (gameManager.CurrentLevelType == LevelType.None)
+        public IGameState DoState(GameManager gameManager)
         {
+            if (gameManager.CurrentLevelType == LevelType.None)
+            {
+                return gameManager.MenuState;
+            }
+
+            if (gameManager.CurrentLevelType != LevelType.None)
+            {
+                Debug.Log("CurrentLevelType was not None so we went to PreGame");
+                return gameManager.PreGameState;
+            }
+
             return gameManager.MenuState;
         }
-
-        if (gameManager.CurrentLevelType != LevelType.None )
-        {
-            Debug.Log("CurrentLevelType was not None so we went to PreGame");
-            return gameManager.PreGameState;
-        }
-        
-        return gameManager.MenuState;
     }
 }

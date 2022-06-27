@@ -1,5 +1,7 @@
-using StateMachine;
-public interface IGameState
+namespace StateMachine
 {
-    IGameState DoState(GameManager manager);
+    public interface IGameState
+    {
+        IGameState DoState(GameManager manager);
+    }
 }

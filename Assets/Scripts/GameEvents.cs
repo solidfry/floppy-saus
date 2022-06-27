@@ -63,6 +63,12 @@ public class GameEvents : MonoBehaviour
     /// </summary>
     public static PlayerScored OnPlayerScoredEvent;
 
+    
+    /// <summary>
+    /// When a level ends we go to the post round state
+    /// </summary>
+    public static PostRound OnPostRoundEvent;
+
     /// <summary>
     /// Timer hit zero
     /// </summary>

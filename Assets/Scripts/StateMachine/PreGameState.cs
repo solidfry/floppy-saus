@@ -1,61 +1,63 @@
 using UnityEngine;
 using TMPro;
-using StateMachine;
-[System.Serializable] 
-public class PreGameState : IGameState
+
+namespace StateMachine
 {
-    [SerializeField]
-    bool startGame = false;
-    public bool StartGame
+    [System.Serializable]
+    public class PreGameState : IGameState
     {
-        get => startGame;
-        set => startGame = value;
-    }
-    [SerializeField]
-    private bool newPreGameState;
+        [SerializeField] bool startGame = false;
 
-    public bool NewPreGameState
-    {
-        get => newPreGameState;
-        set => newPreGameState = value;
-    }
-
-    public IGameState DoState(GameManager gameManager)
-    {
-        if (NewPreGameState)
+        public bool StartGame
         {
-            NewPreGameState = false;
-            Debug.Log("OnPreGameEvent was run" );
-            GameEvents.OnPreGameEvent?.Invoke();
+            get => startGame;
+            set => startGame = value;
         }
 
-        if (gameManager.CurrentLevelType == LevelType.Endless && gameManager.scoreText == null)
+        [SerializeField] private bool newPreGameState;
+
+        public bool NewPreGameState
         {
-            if (GameObject.Find("ScoreText")) {
-                gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+            get => newPreGameState;
+            set => newPreGameState = value;
+        }
+
+        public IGameState DoState(GameManager gameManager)
+        {
+            if (NewPreGameState)
+            {
+                NewPreGameState = false;
+                Debug.Log("OnPreGameEvent was run");
+                GameEvents.OnPreGameEvent?.Invoke();
             }
-        }
 
-        if (StartGame)
-        {
+            if (gameManager.CurrentLevelType == LevelType.Endless && gameManager.scoreText == null)
+            {
+                if (GameObject.Find("ScoreText"))
+                {
+                    gameManager.scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
+                }
+            }
+
+            if (StartGame)
+            {
+                DisableStartGame();
+                NewPreGameState = true;
+                return gameManager.PreRoundState;
+            }
+
             DisableStartGame();
-            NewPreGameState = true;
-            return gameManager.PreRoundState;
+            return gameManager.PreGameState;
         }
 
-        DisableStartGame();
-        return gameManager.PreGameState;
+        public void EnableStartGame()
+        {
+            StartGame = true;
+        }
+
+        void DisableStartGame()
+        {
+            StartGame = false;
+        }
     }
-
-    public void EnableStartGame()
-    {
-        StartGame = true;
-    }
-
-    void DisableStartGame()
-    {
-        StartGame = false;
-    }
-
-
 }

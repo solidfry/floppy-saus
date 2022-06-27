@@ -128,15 +128,7 @@ namespace StateMachine
             if (scoreText != null)
                 scoreText.text = scoreToString.ToString();
         }
-
-//        /// <summary>
-//        /// Add a short delay before new scene when the game over state is activated
-//        /// </summary>
-//        void GameOver()
-//        {
-//            StartCoroutine(GameOverState.DelayGameOver(gameOverDelayTime));
-//        }
-
+        
         /// <summary>
         /// Get all the levels + the endless level from the world manager and add them to the allLevels list
         /// </summary>
