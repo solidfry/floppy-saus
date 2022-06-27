@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worlds:
   - {fileID: 11400000, guid: 248334186ada76b4b9e4fd2f4398b060, type: 2}
+  - {fileID: 11400000, guid: efe9e346744c1004e9750d47297ff56e, type: 2}
   endlessLevel: {fileID: 11400000, guid: 883a40e888921ce4fba181d3493ded39, type: 2}

@@ -336,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163926444}
   - component: {fileID: 163926445}
+  - component: {fileID: 163926446}
   m_Layer: 5
   m_Name: LevelSelect
   m_TagString: Untagged
@@ -362,8 +363,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.87835693}
-  m_SizeDelta: {x: 0, y: 2.5500488}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163926445
 MonoBehaviour:
@@ -391,6 +392,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &163926446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163926443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1001 &169181074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202657, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.00000008940697
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202657, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_Pivot.y
@@ -592,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202657, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 51.099976
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 4394633523751202657, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -762,7 +777,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -878,7 +893,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 912}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &756842245
 MonoBehaviour:
@@ -1266,7 +1281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5440960145762691455, guid: e6af1081f56750f45b34f2ebf573f03c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 90.549995
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5440960145762691455, guid: e6af1081f56750f45b34f2ebf573f03c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1860,7 +1875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5787933281280050006, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 659.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5787933281280050006, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1913,6 +1928,10 @@ PrefabInstance:
     - target: {fileID: 5787933281280050007, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
       propertyPath: m_Name
       value: WorldsUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787933281280050009, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5787933281343151259, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2060,6 +2079,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5787933281650677647, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787933281650677649, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
+      propertyPath: m_ChildForceExpandHeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5787933281886722396, guid: 1a4ac34059fb4d34a991d73d0badf22a, type: 3}
