@@ -45,7 +45,7 @@ namespace StateMachine
                 return gameManager.PreGameState;
             }
             IsNewGame = false;
-            IsGameOver = true;
+            IsGameOver = false;
             return gameManager.GameOverState;
         }
     

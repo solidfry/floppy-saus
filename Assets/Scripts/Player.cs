@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
         GameEvents.OnPreRoundEvent += EnableHasSpawned;
 
-        GameEvents.OnPlayingEvent += DisableControls;
+//        GameEvents.OnPlayingEvent += DisableControls;
 
         GameEvents.OnOutOfBoundsEvent += Respawn;
 
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
         GameEvents.OnPreRoundEvent -= EnableHasSpawned;
 
-        GameEvents.OnPlayingEvent -= DisableControls;
+//        GameEvents.OnPlayingEvent -= DisableControls;
 
         GameEvents.OnOutOfBoundsEvent -= Respawn;
 
