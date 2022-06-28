@@ -30,7 +30,7 @@ namespace StateMachine
                 if (NewRound)
                 {
                     NewRound = false;
-                    DisablePlaying();
+                    DisableIsPlaying();
 
                     GameEvents.OnPreRoundEvent?.Invoke();
                     Debug.Log("A new round has started");
@@ -45,7 +45,8 @@ namespace StateMachine
 
             if (IsPlaying)
             {
-                DisablePlaying();
+                DisableIsPlaying();
+                NewRound = false;
                 Debug.Log("Pre Round State is shifting to Playing state");
                 return gameManager.PlayingState;
             }
@@ -54,13 +55,13 @@ namespace StateMachine
             return gameManager.PreRoundState;
         }
 
-        public void EnablePlaying()
+        public void EnableIsPlaying()
         {
             IsPlaying = true;
             // Debug.Log("EnablePlaying was done and isPlaying is " + isPlaying);
         }
 
-        public void DisablePlaying()
+        public void DisableIsPlaying()
         {
             IsPlaying = false;
             // Debug.Log("DisablePlaying was done and isPlaying is " + isPlaying);

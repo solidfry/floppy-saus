@@ -6,6 +6,7 @@ namespace StateMachine
     [System.Serializable]
     public class PreGameState : IGameState
     {
+        #region Pre Game Fields
         [SerializeField] bool startGame = false;
 
         public bool StartGame
@@ -21,12 +22,13 @@ namespace StateMachine
             get => newPreGameState;
             set => newPreGameState = value;
         }
-
+        #endregion
         public IGameState DoState(GameManager gameManager)
         {
             if (NewPreGameState)
             {
-                NewPreGameState = false;
+                DisableStartGame();
+                DisableNewPreGameState();
                 Debug.Log("OnPreGameEvent was run");
                 GameEvents.OnPreGameEvent?.Invoke();
             }
@@ -42,7 +44,7 @@ namespace StateMachine
             if (StartGame)
             {
                 DisableStartGame();
-                NewPreGameState = true;
+                EnableNewPreGameState();
                 return gameManager.PreRoundState;
             }
 
@@ -58,6 +60,18 @@ namespace StateMachine
         void DisableStartGame()
         {
             StartGame = false;
+        }
+
+        public void EnableNewPreGameState()
+        {
+            NewPreGameState = true;
+            Debug.Log("NewPreGameState is " + NewPreGameState);
+        }
+
+        void DisableNewPreGameState()
+        {
+            NewPreGameState = false;
+            Debug.Log("NewPreGameState is " + NewPreGameState);
         }
     }
 }

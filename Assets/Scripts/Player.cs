@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        DisableControls();
         if (dropper == null)
             AssignPlayerObjects();
     }
@@ -166,11 +167,13 @@ public class Player : MonoBehaviour
     void DisableControls()
     {
         controlsActive = false;
+        Debug.Log("---- Controls will be INACTIVE now ----");
     }
 
     void EnableControls()
     {
         controlsActive = true;
+        Debug.Log("---- Controls will be ACTIVE now ----");
     }
 
     void AssignPlayerObjects()

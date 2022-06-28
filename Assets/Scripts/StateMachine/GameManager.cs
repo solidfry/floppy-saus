@@ -29,16 +29,16 @@ namespace StateMachine
         [field: ReadOnly]
         [field: SerializeField]
         public Level CurrentLevel { get; private set; }
-        [field: ReadOnly]
-        [field: SerializeField]
-        public Level PreviousLevel { get; private set; }
+//        [field: ReadOnly]
+//        [field: SerializeField]
+////        public Level PreviousLevel { get; private set; }
         // todo Refactor this score to be not in the manager
         [SerializeField]
         private int score = 0;
         [SerializeField]
         public TMP_Text scoreText;
-        [SerializeField]
-        public float gameOverDelayTime { get; private set; }
+
+        [SerializeField] public float gameOverDelayTime;
         [SerializeField]
         private WorldManager worldManager;
         
@@ -70,9 +70,11 @@ namespace StateMachine
             GameEvents.OnEnterMenuStateEvent += () => currentState = MenuState;
             GameEvents.OnPreGameEvent += GameOverState.NewGame;
             GameEvents.OnPreRoundEvent += PreGameState.EnableStartGame;
+            GameEvents.OnPostRoundEvent += PreGameState.EnableStartGame;
             GameEvents.OnPlayerScoredEvent += PreRoundState.SetNewRound;
+            GameEvents.OnPostRoundEvent += PreGameState.EnableNewPreGameState;
             GameEvents.OnPlayerScoredEvent += PlayingState.SetPlayerScored;
-            GameEvents.OnPlayingEvent += PreRoundState.EnablePlaying;
+            GameEvents.OnPlayingEvent += PreRoundState.EnableIsPlaying;
             GameEvents.OnTimerZeroEvent += PlayingState.SetTimerIsZero;
             GameEvents.OnPlayerScoredEvent += Scored;
             GameEvents.OnPreGameEvent += ResetScore;
@@ -84,9 +86,11 @@ namespace StateMachine
             GameEvents.OnSetUpEvent -= GetAllLevels;
             GameEvents.OnPreGameEvent -= GameOverState.NewGame;
             GameEvents.OnPreRoundEvent -= PreGameState.EnableStartGame;
+            GameEvents.OnPostRoundEvent -= PreGameState.EnableStartGame;
             GameEvents.OnPlayerScoredEvent -= PreRoundState.SetNewRound;
+            GameEvents.OnPostRoundEvent -= PreGameState.EnableNewPreGameState;
             GameEvents.OnPlayerScoredEvent -= PlayingState.SetPlayerScored;
-            GameEvents.OnPlayingEvent -= PreRoundState.EnablePlaying;
+            GameEvents.OnPlayingEvent -= PreRoundState.EnableIsPlaying;
             GameEvents.OnTimerZeroEvent -= PlayingState.SetTimerIsZero;
             GameEvents.OnPlayerScoredEvent -= Scored;
             GameEvents.OnPreGameEvent -= ResetScore;
