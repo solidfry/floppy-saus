@@ -15,11 +15,12 @@ MonoBehaviour:
   levelID: 2
   sceneID: 6
   levelType: 1
-  levelName: Sauce that saus baby!
+  levelName: Keep that bun still!
   subTitle: Level 2
   callToAction: 
   rankRequirements: 080000000500000003000000
-  description: "You will need to get sauce on your saus in order to win this\_one!"
+  description: The bun has a mind of it's own... CONQUER IT!
   image: {fileID: 0}
   playerCompletedTime: 0
   playerRank: 0
+  levelComplete: 0

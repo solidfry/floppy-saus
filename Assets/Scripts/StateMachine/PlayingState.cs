@@ -29,6 +29,11 @@ namespace StateMachine
                 TimerZero = false;
                 gameManager.PreRoundState.IsPlaying = false;
                 gameManager.PreGameState.StartGame = false;
+                if (gameManager.CurrentLevelType == LevelType.Level)
+                {
+                    SceneManager.LoadScene("PostRound");
+                    return gameManager.PostRoundState;
+                }
 //            GameEvents.OnGameOverEvent?.Invoke();
                 /* todo based on the game mode we need to add a condition here where the game over state will go to a post round screen */
                 return gameManager.GameOverState;

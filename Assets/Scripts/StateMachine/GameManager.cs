@@ -21,7 +21,8 @@ namespace StateMachine
         [ReadOnly]
         [SerializeField]
         public int currentSceneID;
-
+        [SerializeField]
+        private Timer timer;
         [field: Header("Level Information")]
         [field: ReadOnly]
         [field: SerializeField]
@@ -77,6 +78,7 @@ namespace StateMachine
             GameEvents.OnPlayingEvent += PreRoundState.EnableIsPlaying;
             GameEvents.OnTimerZeroEvent += PlayingState.SetTimerIsZero;
             GameEvents.OnPlayerScoredEvent += Scored;
+            GameEvents.OnPlayerScoredEvent += LevelComplete;
             GameEvents.OnPreGameEvent += ResetScore;
             GameEvents.OnTimerZeroEvent += GameOverState.SetIsGameOver;
         }
@@ -93,6 +95,7 @@ namespace StateMachine
             GameEvents.OnPlayingEvent -= PreRoundState.EnableIsPlaying;
             GameEvents.OnTimerZeroEvent -= PlayingState.SetTimerIsZero;
             GameEvents.OnPlayerScoredEvent -= Scored;
+            GameEvents.OnPlayerScoredEvent -= LevelComplete;
             GameEvents.OnPreGameEvent -= ResetScore;
             GameEvents.OnTimerZeroEvent -= GameOverState.SetIsGameOver;
         }
@@ -148,10 +151,7 @@ namespace StateMachine
             foreach (var level in worldManager.worlds.SelectMany(world => world.levels))
             {
                 allLevels.Add(level);
-//                Debug.Log(level + " was added");
             }
-
-//            Debug.Log(allLevels.Count);
         }
 
         /// <summary>
@@ -173,6 +173,18 @@ namespace StateMachine
         {
             Level currentLevel = allLevels.Find(level => level.sceneID == currentSceneID);
             return currentLevel;
+        }
+        
+        private void LevelComplete()
+        {
+            if (CurrentLevelType == LevelType.Level)
+            {
+                timer = FindObjectOfType<Timer>();
+                float completetionTime = 10 - timer.timeRemaining;
+                GetCurrentLevel().playerCompletedTime = completetionTime;
+                GetCurrentLevel().DetermineAndSetPlayerRank();
+                GetCurrentLevel().DetermineLevelComplete();
+            }
         }
 
     }

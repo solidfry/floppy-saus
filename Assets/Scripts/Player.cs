@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     {
         if (dropper != null)
         {
-            Debug.Log("-------------DROPPER WAS NOT NULL AND THEREFORE IT IS RESPAWNING------------------");
+//            Debug.Log("-------------DROPPER WAS NOT NULL AND THEREFORE IT IS RESPAWNING------------------");
             Destroy(dropper.transform.parent.gameObject);
             GameObject newDropper = Instantiate(dropperPrefab, dropperStartLocation, Quaternion.Euler(0, 0, -90));
             AssignPlayerObjects();
@@ -178,13 +178,11 @@ public class Player : MonoBehaviour
 
     void AssignPlayerObjects()
     {
-        if (dropper == null)
-        {
-            dropper = GameObject.FindGameObjectWithTag("Player");
-            dropper.GetComponent<Rigidbody2D>().isKinematic = true;
-            rb = dropper.GetComponent<Rigidbody2D>();
-            tr = dropper.GetComponent<Transform>();
-        }
+        if (dropper != null) return;
+        dropper = GameObject.FindGameObjectWithTag("Player");
+        dropper.GetComponent<Rigidbody2D>().isKinematic = true;
+        rb = dropper.GetComponent<Rigidbody2D>();
+        tr = dropper.GetComponent<Transform>();
     }
 
     void EnableHasSpawned()

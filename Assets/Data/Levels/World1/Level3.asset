@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   levelID: 3
-  sceneID: 6
+  sceneID: 7
   levelType: 1
-  levelName: Mustard you a question
+  levelName: Diamond at the party
   subTitle: Level 3
   callToAction: 
   rankRequirements: 080000000500000003000000
-  description: Mustard can be delicious on a sausage... Get it mustarded!
+  description: Someone left their precious diamonds right in front of your bun. Ridiculous!
   image: {fileID: 0}
-  playerCompletedTime: 2
-  playerRank: 3
+  playerCompletedTime: 0
+  playerRank: 0
+  levelComplete: 0

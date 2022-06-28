@@ -474,9 +474,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 57c78363573b3594cb69d883cdd868c0, type: 3}
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
       objectReference: {fileID: 21300000, guid: ebb9db7d3be78f047ae2834954cc7122, type: 3}
+    - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4634e6d18a8f8fb43a43c2b5ea653957, type: 3}
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
@@ -981,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394633522272084687, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 185.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4394633522272084687, guid: 3eae38a3600682140b1dc98b078bef8c, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -303,6 +303,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: ebb9db7d3be78f047ae2834954cc7122, type: 3}
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4634e6d18a8f8fb43a43c2b5ea653957, type: 3}
+    - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
       objectReference: {fileID: 21300000, guid: 332b44860e10a8f4db069d81dde66654, type: 3}
@@ -606,6 +610,10 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
       objectReference: {fileID: 21300000, guid: ebb9db7d3be78f047ae2834954cc7122, type: 3}
+    - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4634e6d18a8f8fb43a43c2b5ea653957, type: 3}
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
@@ -961,7 +969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -998,6 +1006,10 @@ PrefabInstance:
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: EndlessGame
       objectReference: {fileID: 0}
     - target: {fileID: 4808706996330429653, guid: e0f03b5a4c95d2944bece7dd75844a6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
