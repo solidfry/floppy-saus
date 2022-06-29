@@ -22,6 +22,7 @@ MonoBehaviour:
   description: "Get the sausage to the goal to proceed. The quicker you do it, the
     better you star rating will\_be!"
   image: {fileID: 0}
-  playerCompletedTime: 0
-  playerRank: 0
-  levelComplete: 0
+  playerCompletedTime: 1
+  playerRank: 3
+  levelComplete: 1
+  playable: 1

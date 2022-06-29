@@ -10,29 +10,25 @@ namespace StateMachine
     {
         [Header("State Information")]
         public static GameManager Instance = null;
-        private IGameState currentState;
-        [ReadOnly]
-        [SerializeField]
+        private IGameState currentState;        
+        [ReadOnly][SerializeField]
         private bool gameHasSetUp;
-        [ReadOnly]
-        [SerializeField]
+        [ReadOnly][SerializeField]
         private string currentStateName;
+        
         [Header("Scene Information")]
-        [ReadOnly]
-        [SerializeField]
+        [ReadOnly][SerializeField]
         public int currentSceneID;
         [SerializeField]
         private Timer timer;
+        
         [field: Header("Level Information")]
-        [field: ReadOnly]
-        [field: SerializeField]
+        [field: ReadOnly][field: SerializeField]
         public LevelType CurrentLevelType { get; private set; }
-        [field: ReadOnly]
-        [field: SerializeField]
+        [field: ReadOnly][field: SerializeField]
         public Level CurrentLevel { get; private set; }
-//        [field: ReadOnly]
-//        [field: SerializeField]
-////        public Level PreviousLevel { get; private set; }
+//      [field: ReadOnly][field: SerializeField]
+//      public Level PreviousLevel { get; private set; }
         // todo Refactor this score to be not in the manager
         [SerializeField]
         private int score = 0;
@@ -160,7 +156,7 @@ namespace StateMachine
         /// <returns>LevelType</returns>
         LevelType GetCurrentLevelType()
         {
-            Level levelIDToMatch = allLevels.Find(level => level.sceneID == currentSceneID);
+            Level levelIDToMatch = GetCurrentLevel();
             if (levelIDToMatch)
             {
                 return CurrentLevelType = levelIDToMatch.levelType;
@@ -174,6 +170,12 @@ namespace StateMachine
             Level currentLevel = allLevels.Find(level => level.sceneID == currentSceneID);
             return currentLevel;
         }
+
+        Level GetNextLevel()
+        {
+            Level nextLevel = allLevels.Find(level => level.levelID == GetCurrentLevel().levelID + 1);
+            return nextLevel;
+        }
         
         private void LevelComplete()
         {
@@ -184,6 +186,7 @@ namespace StateMachine
                 GetCurrentLevel().playerCompletedTime = completetionTime;
                 GetCurrentLevel().DetermineAndSetPlayerRank();
                 GetCurrentLevel().DetermineLevelComplete();
+                GetNextLevel().playable = true;
             }
         }
 

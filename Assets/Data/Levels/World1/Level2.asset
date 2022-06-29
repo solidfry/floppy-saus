@@ -21,6 +21,7 @@ MonoBehaviour:
   rankRequirements: 080000000500000003000000
   description: The bun has a mind of it's own... CONQUER IT!
   image: {fileID: 0}
-  playerCompletedTime: 0
-  playerRank: 0
-  levelComplete: 0
+  playerCompletedTime: 5.013512
+  playerRank: 2
+  levelComplete: 1
+  playable: 1

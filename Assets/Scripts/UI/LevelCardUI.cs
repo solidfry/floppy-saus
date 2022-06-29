@@ -53,12 +53,12 @@ public class LevelCardUI : MonoBehaviour
 
             if (levelData.levelComplete)
                 subTitleText.text = $"{levelData.subTitle} Complete!";
-            // todo: this needs to be improved so that if you've completed the previous level this level will be available
-//            if (levelData.levelID != 1 && levelData.levelComplete == false) 
-//            {
-//                button.interactable = false;
-//                button.GetComponentInChildren<TMP_Text>().color = new Color(0.07f,0,0.2f, 0.5f);
-//            }
+
+            if (levelData.levelID != 1 && !levelData.playable) 
+            {
+                button.interactable = false;
+                button.GetComponentInChildren<TMP_Text>().color = new Color(0.07f,0,0.2f, 0.5f);
+            }
             
             if (descriptionText != null)
                 descriptionText.text = description;

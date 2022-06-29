@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,8 +27,9 @@ public class Level : ScriptableObject
     [ReadOnly]
     public Rank playerRank;
     [SerializeField]
-    public bool levelComplete = false;
-
+    public bool levelComplete;
+    [SerializeField]
+    public bool playable;
     private void Awake()
     {
         levelComplete = false;
@@ -86,10 +86,12 @@ public class Level : ScriptableObject
 
     public void DetermineLevelComplete()
     {
-        if (playerCompletedTime > 0 && playerCompletedTime <= rankRequirements.Max() )
+        if (playerCompletedTime > 0 && playerCompletedTime <= rankRequirements.Max() ) {
             levelComplete = true;
+            playable = true;
+        }
     }
-
+    
     void SetSubTitle()
     {
         subTitle = "Level " + levelID;

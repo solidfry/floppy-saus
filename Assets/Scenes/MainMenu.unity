@@ -520,6 +520,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 588665177867839884, guid: 16ad29049f7e1f44182201cbe3c216af, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 588665177867839885, guid: 16ad29049f7e1f44182201cbe3c216af, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -575,6 +579,18 @@ PrefabInstance:
     - target: {fileID: 1289058751121688801, guid: 16ad29049f7e1f44182201cbe3c216af, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132677021007500537, guid: 16ad29049f7e1f44182201cbe3c216af, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132677021007500537, guid: 16ad29049f7e1f44182201cbe3c216af, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132677021007500537, guid: 16ad29049f7e1f44182201cbe3c216af, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16ad29049f7e1f44182201cbe3c216af, type: 3}
